@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HBF × Salesforce — Executive Readback | 21 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',Arial,sans-serif;background:#f0f4f8;color:#303030;line-height:1.6}
+a{color:inherit;text-decoration:none}
+
+/* ── Layout ── */
+.wrap{max-width:1080px;margin:0 auto;padding:0 40px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+
+/* ── Section containers ── */
+.section{padding:72px 0;background:#f0f4f8}
+.section.dark{background:#001e5b;padding:64px 0}
+.section.white{background:#fff;padding:72px 0}
+.section.navy{background:#032d60;padding:64px 0}
+
+/* ── Section header bar ── */
+.sec-bar{background:#001e5b;border-radius:8px;padding:16px 24px;display:flex;align-items:baseline;gap:12px;margin-bottom:28px}
+.sec-bar .num{font-size:12px;font-weight:700;color:#90d0fe;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}
+.sec-bar h2{font-size:19px;font-weight:900;color:#fff;margin:0}
+.sec-bar .pipe{color:#90d0fe;margin:0 6px}
+.sec-bar .sub{font-size:13px;color:#90d0fe;font-weight:400}
+
+/* ── Cards ── */
+.card{background:#cfe9fe;border-radius:8px;border-top:4px solid #022ac0;padding:20px 24px}
+.card-white{background:#fff;border-radius:8px;border:1px solid #d4e2f0;padding:20px 24px}
+.card-dark{background:#032d60;border-radius:8px;padding:20px 24px}
+.card-navy{background:#001e5b;border-radius:8px;padding:20px 24px}
+
+/* ── Typography ── */
+h1{font-size:42px;font-weight:900;line-height:1.1;letter-spacing:-0.5px}
+h2{font-size:22px;font-weight:800;color:#001e5b}
+h3{font-size:16px;font-weight:700;color:#001e5b}
+h4{font-size:13px;font-weight:700;color:#001e5b;text-transform:uppercase;letter-spacing:.8px}
+p{font-size:14px;color:#303030;line-height:1.7}
+.lead{font-size:15px;line-height:1.75}
+.white-text{color:#fff!important}
+.cyan-text{color:#00b3ff}
+.teal-text{color:#04e1cb}
+.gold-text{color:#fcc003}
+.pink-text{color:#ff538a}
+.sky-text{color:#90d0fe}
+.navy-text{color:#001e5b}
+.small-label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
+.quote{font-size:14px;font-style:italic;line-height:1.7;color:#fff}
+ul.clean{list-style:none;padding:0}
+ul.clean li{padding:5px 0 5px 20px;position:relative;font-size:14px}
+ul.clean li::before{content:"·";position:absolute;left:6px;color:#022ac0;font-weight:900}
+
+/* ── Number badges ── */
+.badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-size:13px;font-weight:800;flex-shrink:0}
+.badge-lg{width:36px;height:36px;font-size:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0}
+.b-navy{background:#001e5b;color:#fff}
+.b-vivid{background:#022ac0;color:#fff}
+.b-teal{background:#04e1cb;color:#001e5b}
+.b-cyan{background:#00b3ff;color:#001e5b}
+.b-gold{background:#fcc003;color:#001e5b}
+.b-pink{background:#ff538a;color:#fff}
+
+/* Phase badge pills */
+.phase-pill{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;letter-spacing:.5px}
+.p1{background:#00b3ff;color:#001e5b}
+.p2{background:#04e1cb;color:#001e5b}
+.p3{background:#fcc003;color:#001e5b}
+.p4{background:#ff538a;color:#fff}
+
+/* ── Divider ── */
+.divider{border:none;border-top:1px solid #d4e2f0;margin:32px 0}
+
+/* ── Tag chips ── */
+.chip{display:inline-block;background:#001e5b;color:#fff;border-radius:6px;padding:6px 14px;font-size:13px;font-weight:700;margin:4px}
+.chip-outline{display:inline-block;border:1.5px solid #022ac0;color:#022ac0;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;margin:3px}
+
+/* ── Hero ── */
+.hero{background:#001e5b;padding:0}
+.hero-inner{padding:48px 40px 36px;max-width:1080px;margin:0 auto}
+.hero-eyebrow{font-size:12px;font-weight:700;color:#90d0fe;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
+.hero-logos{display:flex;align-items:center;justify-content:flex-end;gap:24px;margin-bottom:32px}
+.hbf-logo{height:72px}.sf-logo{height:56px}
+.sf-wordmark{font-size:13px;font-weight:700;color:#90d0fe;letter-spacing:.5px}
+.hero h1{color:#fff;margin-bottom:16px;max-width:720px}
+.hero-sub{font-size:17px;color:#90d0fe;font-weight:400;margin-bottom:0}
+.hero-strip{background:#022ac0;padding:14px 0}
+.hero-strip-inner{max-width:1080px;margin:0 auto;padding:0 40px;font-size:13px;color:#fff}
+.hero-strip-inner strong{font-weight:800}
+.hero-strip-inner span{color:#cfe9fe;font-weight:400;margin:0 8px}
+
+/* ── Challenge statement ── */
+.challenge-box{background:#001e5b;border-radius:10px;padding:28px 32px;margin-bottom:28px}
+.challenge-box .eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#90d0fe;text-transform:uppercase;margin-bottom:14px}
+.challenge-stmt{font-size:19px;font-weight:800;color:#fff;line-height:1.4}
+.hl-hbf{background:#fff;color:#001e5b;border-radius:3px;padding:1px 7px;font-weight:900}
+.hl-cyan{color:#00b3ff}
+.hl-gold{color:#fcc003}
+
+/* ── Agenda cards ── */
+.agenda-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:24px}
+.agenda-card{background:#cfe9fe;border-radius:8px;border-top:4px solid #022ac0;padding:16px}
+.agenda-card.highlight{border-top-color:#04e1cb;background:#e6f9f7}
+.agenda-num{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#022ac0;color:#fff;font-size:14px;font-weight:900;margin-bottom:12px}
+.agenda-card.highlight .agenda-num{background:#04e1cb;color:#001e5b}
+.agenda-card h4{font-size:12px;font-weight:800;color:#001e5b;text-transform:none;letter-spacing:0;margin-bottom:6px;line-height:1.35}
+.agenda-card p{font-size:11px;color:#303030;line-height:1.55}
+
+/* ── Pillar cards ── */
+.pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pillar-card{background:#fff;border-radius:8px;border-left:5px solid #022ac0;padding:20px 24px;display:flex;gap:16px;align-items:flex-start}
+.pillar-card:nth-child(2){border-left-color:#00b3ff}
+.pillar-card:nth-child(3){border-left-color:#04e1cb}
+.pillar-card:nth-child(4){border-left-color:#fcc003}
+.pillar-card h3{font-size:14px;font-weight:800;color:#001e5b;margin-bottom:6px}
+.pillar-card p{font-size:13px;color:#303030;line-height:1.6}
+
+/* ── Theme cards (What We Heard) ── */
+.theme-label{display:inline-block;padding:5px 12px;border-radius:4px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.theme-01{background:#022ac0;color:#fff}
+.theme-02{background:#032d60;color:#fff}
+.theme-03{background:#04e1cb;color:#001e5b}
+.theme-title{font-size:15px;font-weight:800;color:#001e5b;margin-bottom:12px}
+.challenge-label{font-size:11px;font-weight:800;letter-spacing:1px;color:#022ac0;text-transform:uppercase;margin-bottom:8px}
+.quote-box{background:#001e5b;border-radius:6px;padding:14px 18px;margin-top:16px}
+.quote-box p{font-size:13px;font-style:italic;color:#fff;line-height:1.6}
+
+/* ── Definition section ── */
+.def-box{background:#032d60;border-radius:8px;padding:28px 32px;margin-bottom:24px}
+.def-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#90d0fe;text-transform:uppercase;margin-bottom:14px}
+.def-quote{font-size:16px;font-style:italic;color:#fff;line-height:1.6;font-weight:500}
+.option-card{border:1.5px solid #d4e2f0;border-radius:8px;padding:18px 22px;margin-bottom:14px}
+.option-tag{display:inline-block;background:#cfe9fe;color:#022ac0;border-radius:4px;font-size:11px;font-weight:800;letter-spacing:.8px;padding:4px 10px;text-transform:uppercase;margin-bottom:10px}
+.option-headline{font-size:15px;font-weight:800;color:#001e5b;margin-bottom:8px}
+.option-body{font-size:13px;color:#303030;line-height:1.65}
+
+/* ── Word chip row ── */
+.word-chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.word-chip{background:#001e5b;color:#fff;border-radius:6px;padding:6px 12px;font-size:13px;font-weight:700}
+.pattern-box{background:#001e5b;border-radius:8px;padding:20px 24px;margin-top:20px}
+.pattern-label{font-size:11px;font-weight:700;letter-spacing:1.2px;color:#90d0fe;text-transform:uppercase;margin-bottom:10px}
+.pattern-box p{font-size:14px;font-weight:600;color:#fff;line-height:1.65}
+
+/* ── Scenario grid ── */
+.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.scenario-card{background:#cfe9fe;border-radius:8px;padding:16px 18px}
+.scenario-num{font-size:22px;font-weight:900;color:#022ac0;margin-bottom:4px}
+.scenario-type{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#022ac0;margin-bottom:10px}
+.s-row{margin-bottom:8px}
+.s-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#032d60}
+.s-value{font-size:12px;color:#303030;line-height:1.5}
+.s-outcome{font-size:12px;font-weight:800;color:#001e5b}
+
+/* ── Use case list ── */
+.uc-phase-header{display:flex;align-items:center;gap:12px;margin:28px 0 14px}
+.uc-phase-header h3{font-size:15px;font-weight:800;color:#001e5b}
+.uc-phase-header .phase-dot{width:12px;height:12px;border-radius:50%}
+.uc-table{width:100%;border-collapse:collapse;margin-bottom:8px}
+.uc-table th{background:#001e5b;color:#fff;font-size:12px;font-weight:700;letter-spacing:.5px;padding:10px 14px;text-align:left}
+.uc-table td{padding:8px 14px;font-size:12px;border-bottom:1px solid #e8f0f8;vertical-align:top}
+.uc-table tr:nth-child(even) td{background:#f7faff}
+.uc-table tr:hover td{background:#edf4ff}
+.uc-name{font-weight:700;color:#001e5b;font-size:12px}
+.uc-desc{font-size:11px;color:#505050;line-height:1.5;margin-top:2px}
+.products-tag{font-size:11px;background:#e8f0f8;border-radius:4px;padding:2px 7px;color:#022ac0;font-weight:600;white-space:nowrap}
+
+
+
+/* ── Partner Brief ── */
+.pb-wrap{font-family:'Source Sans 3','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:1.55;padding:48px 0}
+.pb-wrap .pb-doc-header{background:linear-gradient(135deg,#00626B 0%,#004A52 100%);color:#fff;border-radius:12px;padding:48px 52px;margin-bottom:36px;position:relative;overflow:hidden}
+.pb-wrap .pb-doc-header::after{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;background:rgba(255,255,255,0.04);border-radius:50%;pointer-events:none}
+.pb-wrap .pb-eyebrow{display:inline-block;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.65);font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:18px}
+.pb-wrap .pb-doc-header h1{font-size:32px;font-weight:700;line-height:1.15;margin-bottom:12px;color:#fff}
+.pb-wrap .pb-doc-header p{font-size:14px;color:rgba(255,255,255,0.58);max-width:580px}
+.pb-wrap .pb-legend{display:flex;align-items:center;gap:28px;margin-bottom:14px;flex-wrap:wrap}
+.pb-wrap .pb-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#706E6B}
+.pb-wrap .pb-legend-swatch{width:14px;height:14px;border-radius:3px}
+.pb-wrap .pb-legend-note{font-size:12px;color:#706E6B;margin-left:auto;font-style:italic}
+.pb-wrap .pb-pill-legend{display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.pb-wrap .pb-pill-legend-label{font-size:11px;color:#706E6B;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-right:4px}
+.pb-wrap .pb-gantt-card{background:#fff;border-radius:12px;border:1px solid #DDDBDA;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.pb-wrap table.pb-gantt{width:100%;border-collapse:collapse;table-layout:fixed}
+.pb-wrap .pb-gantt thead tr{background:#00626B}
+.pb-wrap .pb-gantt thead th{padding:14px 12px;text-align:center;font-size:10px;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:.12em;text-transform:uppercase;border-right:1px solid rgba(255,255,255,.07)}
+.pb-wrap .pb-gantt thead th.pb-col-label{text-align:left;width:260px;padding-left:24px;border-right:1px solid rgba(255,255,255,.15)}
+.pb-wrap .pb-gantt thead th:last-child{border-right:none}
+.pb-wrap .pb-gantt tr.pb-bar-row td{height:48px;border-right:1px solid #F0EFEE;border-bottom:1px solid #F0EFEE;padding:10px 5px;vertical-align:middle}
+.pb-wrap .pb-gantt tr.pb-bar-row td.pb-col-label{padding:10px 24px;font-size:13px;font-weight:700;border-right:2px solid #DDDBDA\!important;white-space:nowrap}
+.pb-wrap .pb-gantt tr.pb-bar-row td.pb-empty{background:repeating-linear-gradient(-45deg,transparent,transparent 8px,rgba(0,0,0,.018) 8px,rgba(0,0,0,.018) 9px)}
+.pb-wrap .pb-gantt tr.pb-bar-row td:last-child{border-right:none}
+.pb-bar{height:26px;width:100%;border-radius:0;display:block}
+.pb-bar.pb-cap-left{border-radius:13px 0 0 13px}
+.pb-bar.pb-cap-right{border-radius:0 13px 13px 0}
+.pb-bar.pb-cap-both{border-radius:13px}
+.pb-wrap .pb-gantt tr.pb-content-row td{padding:0;border-bottom:4px solid #DDDBDA}
+.pb-stream-block{padding:22px 28px 26px 24px;border-left:5px solid;display:grid;grid-template-columns:220px 1fr;gap:20px 36px;align-items:start}
+.pb-stream-meta{padding-top:2px}
+.pb-stream-meta .pb-stream-num{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.55}
+.pb-stream-meta .pb-stream-title{font-size:14px;font-weight:700;line-height:1.25;margin-bottom:6px}
+.pb-stream-meta .pb-stream-dep{font-size:11px;color:#706E6B;font-style:italic;line-height:1.45}
+.pb-stream-bullets ul{list-style:none;margin:0;padding:0}
+.pb-stream-bullets li{font-size:12.5px;padding:7px 10px 7px 18px;position:relative;border-bottom:1px solid #F5F4F3;line-height:1.5;color:#3E3E3C}
+.pb-stream-bullets li:last-child{border-bottom:none}
+.pb-stream-bullets li::before{content:'—';position:absolute;left:0;top:8px;font-size:10px;font-weight:700;color:#706E6B}
+.pb-stream-bullets li.pb-li-hbf{background:#D4F2F4;color:#00626B\!important;font-weight:600;border-left:4px solid #00626B;padding-left:14px}
+.pb-stream-bullets li.pb-li-hbf::before{color:#00626B;left:-4px}
+.pb-pill{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;margin-left:7px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;line-height:1.6}
+.pb-pill-ootb{background:#CDEFC4;color:#1B5E38}
+.pb-pill-precfg{background:#D8EDFF;color:#00396B}
+.pb-pill-stdconn{background:#FDE8C8;color:#7A3D00}
+.pb-pill-tableau{background:#D5E8F5;color:#1F77B4}
+.pb-parallel-tag{display:inline-block;background:#F5F5F5;border:1px solid #DDDBDA;color:#706E6B;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;margin-left:8px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle}
+.pb-dc-label{color:#898ED1}.pb-dc-bar{background:#898ED1}.pb-dc-block{border-left-color:#898ED1}.pb-dc-block .pb-stream-num,.pb-dc-block .pb-stream-title{color:#898ED1}
+.pb-mce-label{color:#E07D00}.pb-mce-bar{background:#E07D00}.pb-mce-block{border-left-color:#E07D00}.pb-mce-block .pb-stream-num,.pb-mce-block .pb-stream-title{color:#E07D00}
+.pb-mi-label{color:#54698D}.pb-mi-bar{background:#54698D}.pb-mi-block{border-left-color:#54698D}.pb-mi-block .pb-stream-num,.pb-mi-block .pb-stream-title{color:#54698D}
+.pb-ref-label{color:#449CD5}.pb-ref-bar{background:#449CD5}.pb-ref-block{border-left-color:#449CD5}.pb-ref-block .pb-stream-num,.pb-ref-block .pb-stream-title{color:#449CD5}
+/* ── Stage Journey Map ── */
+.ucmap-grid{display:grid;grid-template-columns:1fr 14px 1fr 14px 1fr 14px 1fr 14px 1fr;gap:0;align-items:start}
+.ucmap-arrow{display:flex;align-items:flex-start;justify-content:center;padding-top:14px;font-size:16px;color:#90d0fe;font-weight:700}
+.ucmap-col{background:#fff;border-radius:8px;border:1px solid #d4e2f0;overflow:hidden}
+.ucmap-header{padding:9px 10px;font-size:9px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;text-align:center}
+.ucmap-card{padding:9px 10px;border-bottom:1px solid #eef2f7}
+.ucmap-card:last-child{border-bottom:none}
+.ucmap-title{font-size:10.5px;font-weight:700;color:#001e5b;margin-bottom:4px;line-height:1.35}
+.ucmap-body{font-size:9.5px;color:#505050;line-height:1.55;margin:0}
+/* ── Prioritisation ── */
+.prio-layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;align-items:start}
+.uc-numbered-list{display:grid;grid-template-columns:1fr;gap:2px}
+.uc-item{display:flex;align-items:center;gap:6px;background:#fff;border-radius:4px;padding:2px 7px;border:1px solid #e0eaf5;min-width:0}
+.uc-item .badge{width:20px;height:20px;font-size:9px;flex-shrink:0}
+.uc-item-name{font-size:10.5px;color:#303030;flex:1;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.uc-item .phase-pill{font-size:9px;padding:2px 5px;white-space:nowrap;flex-shrink:0}
+.uc-phase-label{font-size:10px;font-weight:700;color:#888;white-space:nowrap}
+
+/* ── Matrix ── */
+.matrix-wrap{position:relative;width:100%;padding-bottom:70%;border-radius:12px;overflow:hidden}
+.matrix-inner{position:absolute;inset:0;display:grid;grid-template-columns:52px 1fr;grid-template-rows:1fr 44px}
+.matrix-yaxis{grid-row:1;grid-column:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}
+.matrix-yaxis-label{font-size:11px;font-weight:700;color:#001e5b;letter-spacing:.8px;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}
+.matrix-xaxis{grid-row:2;grid-column:2;display:flex;align-items:center;justify-content:space-between;padding:4px 8px}
+.matrix-xaxis-label{font-size:11px;font-weight:700;color:#001e5b;letter-spacing:.8px;text-transform:uppercase}
+.matrix-plot{grid-row:1;grid-column:2;position:relative;border:2px solid #d4e2f0;border-radius:6px;overflow:hidden}
+.q-tl,.q-tr,.q-bl,.q-br{position:absolute;width:50%;height:50%}
+.q-tl{top:0;left:0;background:#e6f9f7;border-right:1.5px dashed #b0d8d0;border-bottom:1.5px dashed #b0d8d0}
+.q-tr{top:0;right:0;background:#e8f0fe;border-bottom:1.5px dashed #b0c8f0}
+.q-bl{bottom:0;left:0;background:#f5f9ff;border-right:1.5px dashed #ccdde8}
+.q-br{bottom:0;right:0;background:#fff8ed}
+.q-label{position:absolute;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;opacity:.7;pointer-events:none}
+.ql-tl{top:8px;left:10px;color:#04a88a}
+.ql-tr{top:8px;right:10px;color:#022ac0}
+.ql-bl{bottom:8px;left:10px;color:#5580aa}
+.ql-br{bottom:8px;right:10px;color:#c07000}
+.dot{position:absolute;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;transform:translate(-50%,-50%);cursor:default;transition:transform .15s;z-index:1;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.dot:hover{transform:translate(-50%,-50%) scale(1.35);z-index:10}
+.dot.d1{background:#00b3ff;color:#001e5b}
+.dot.d2{background:#04e1cb;color:#001e5b}
+.dot.d3{background:#fcc003;color:#001e5b}
+.dot.d4{background:#ff538a;color:#fff}
+
+/* ── Impact Drivers ── */
+.metric-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:20px}
+.metric-card{background:#cfe9fe;border-radius:8px;padding:16px;border-top:3px solid #022ac0}
+.metric-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#022ac0;margin-bottom:6px}
+.metric-value{font-size:24px;font-weight:900;color:#001e5b;line-height:1}
+.metric-sub{font-size:11px;color:#505050;margin-top:4px;line-height:1.4}
+.metric-grid-2{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.metric-wide{grid-column:span 2}
+.metric-card.accent{background:#001e5b}
+.metric-card.accent .metric-label{color:#90d0fe}
+.metric-card.accent .metric-value{color:#fff}
+.metric-card.accent .metric-sub{color:#cfe9fe}
+
+/* ── Roadmap ── */
+.phase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.phase-card{border-radius:8px;overflow:hidden}
+.phase-header{padding:16px 18px 12px}
+.phase-tag{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px}
+.phase-title{font-size:16px;font-weight:900;color:#fff;line-height:1.3}
+.phase-body{background:#fff;padding:16px 18px;flex:1}
+.phase-intent{font-size:12px;font-style:italic;color:#032d60;margin-bottom:10px;line-height:1.5;font-weight:600}
+.phase-body h4{font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#022ac0;margin-bottom:8px}
+.phase-body ul{list-style:none;padding:0}
+.phase-body ul li{font-size:12px;color:#303030;padding:4px 0 4px 14px;position:relative;line-height:1.5;border-bottom:1px solid #f0f4f8}
+.phase-body ul li::before{content:"→";position:absolute;left:0;color:#022ac0;font-size:10px;top:5px}
+.phase-products{background:#cfe9fe;padding:10px 18px;font-size:11px;color:#022ac0;font-weight:600}
+.phase-h1{background:#001e5b}.phase-h2{background:#022ac0}.phase-h3{background:#032d60}.phase-h4{background:#066afe}
+.connector-row{display:flex;align-items:center;justify-content:center;gap:0;margin:0 0 28px;padding:0 8px}
+.conn-block{flex:1;text-align:center;font-size:12px;font-weight:700;color:#001e5b;background:#cfe9fe;padding:10px;border-radius:6px}
+.conn-arrow{font-size:20px;color:#022ac0;padding:0 6px;flex-shrink:0}
+.how-connect-box{background:#032d60;border-radius:10px;padding:28px 32px}
+.how-connect-box p{color:#fff;font-size:15px;line-height:1.75;margin-bottom:12px}
+
+/* ── Press Release / Future Back Vision ── */
+.fbv-wrap{background:#fefefe;border:1px solid #d4e2f0;border-radius:10px;padding:44px 52px;max-width:780px;margin:0 auto 40px;position:relative}
+.fbv-tag{display:inline-flex;align-items:center;gap:8px;background:#001e5b;color:#90d0fe;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:3px;margin-bottom:18px}
+.fbv-release{font-size:11px;font-weight:700;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.fbv-headline{font-size:21px;font-weight:800;color:#001e5b;line-height:1.3;margin-bottom:6px}
+.fbv-rule{border:none;border-top:2px solid #001e5b;margin:16px 0 14px}
+.fbv-body{font-size:13px;color:#2d2d2d;line-height:1.75;margin-bottom:14px}
+.fbv-pull{border-left:3px solid #022ac0;padding:12px 20px;margin:22px 0;background:#f0f5ff;border-radius:0 6px 6px 0}
+.fbv-pull p{font-size:14px;color:#001e5b;font-style:italic;font-weight:500;line-height:1.65;margin:0 0 6px}
+.fbv-pull .fbv-attr{font-size:11px;color:#505050;font-weight:700;font-style:normal;margin:0}
+.fbv-member-pull{border-left:3px solid #04e1cb;padding:12px 20px;margin:22px 0;background:#f0fefb;border-radius:0 6px 6px 0}
+.fbv-member-pull p{font-size:13.5px;color:#032d60;font-style:italic;line-height:1.65;margin:0 0 6px}
+.fbv-member-pull .fbv-attr{font-size:11px;color:#505050;font-weight:700;font-style:normal;margin:0}
+.fbv-end{text-align:center;font-size:11px;font-weight:800;color:#aaa;letter-spacing:3px;margin-top:28px}
+/* ── Connected Vision ── */
+.cv-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.cv-card{border-radius:8px;overflow:hidden}
+.cv-header{background:#001e5b;padding:14px 16px}
+.cv-pos{font-size:28px;font-weight:900;color:#90d0fe;line-height:1}
+.cv-title{font-size:13px;font-weight:800;color:#fff;margin-top:4px;line-height:1.3}
+.cv-body{background:#cfe9fe;padding:14px 16px}
+.cv-body p{font-size:12px;color:#303030;line-height:1.55}
+
+/* ── Callout ── */
+.callout-strip{background:#022ac0;border-radius:8px;padding:20px 28px;display:flex;align-items:center;gap:20px;margin-bottom:0}
+.callout-strip p{font-size:14px;color:#fff;line-height:1.6;font-weight:500}
+
+/* ── Footer ── */
+footer{background:#001e5b;padding:24px 40px;text-align:center}
+footer p{font-size:12px;color:#90d0fe}
+</style>
+</head>
+<body>
+
+<!-- ── Password Gate ── -->
+<div id="pw-gate" style="display:none;position:fixed;inset:0;z-index:9999;background:#001e5b;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0">
+  <div style="background:#fff;border-radius:12px;padding:48px 52px;width:360px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)">
+    <img src="Design References/salesforce-transparent.png" alt="Salesforce" style="height:28px;margin-bottom:24px;opacity:.85">
+    <div style="font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#001e5b;margin-bottom:6px">HBF × Salesforce</div>
+    <div style="font-size:16px;font-weight:700;color:#001e5b;margin-bottom:24px;line-height:1.4">Executive Readback<br><span style="font-weight:400;font-size:13px;color:#666">Enter password to continue</span></div>
+    <input id="pw-input" type="password" placeholder="Password" autocomplete="off"
+      style="width:100%;box-sizing:border-box;padding:11px 14px;border:1.5px solid #d4e2f0;border-radius:6px;font-size:14px;font-family:inherit;outline:none;margin-bottom:10px;transition:border .2s"
+      onfocus="this.style.borderColor='#022ac0'" onblur="this.style.borderColor='#d4e2f0'">
+    <div id="pw-error" style="font-size:12px;color:#e0004d;min-height:16px;margin-bottom:8px"></div>
+    <button onclick="checkPw()"
+      style="width:100%;padding:11px;background:#022ac0;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s"
+      onmouseover="this.style.background='#001e5b'" onmouseout="this.style.background='#022ac0'">View Document</button>
+  </div>
+  <div style="margin-top:20px;font-size:11px;color:rgba(255,255,255,.4)">Confidential · For internal review only</div>
+</div>
+<script>
+  (function(){
+    var stored = sessionStorage.getItem('hbf_auth');
+    if(stored === '1') { document.getElementById('pw-gate').style.display = 'none'; }
+    else { document.getElementById('pw-gate').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+  })();
+  function checkPw(){
+    var v = document.getElementById('pw-input').value;
+    if(v === 'Salesforce'){
+      sessionStorage.setItem('hbf_auth','1');
+      document.getElementById('pw-gate').style.display = 'none';
+      document.body.style.overflow = '';
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect password — please try again';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+    }
+  }
+  document.addEventListener('keydown', function(e){ if(e.key==='Enter') checkPw(); });
+</script>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 1: HERO
+════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-logos">
+      <img src="Design References/hbf-logo-transparent.png" class="hbf-logo" alt="HBF">
+      <img src="Design References/salesforce-transparent.png" class="sf-logo" alt="Salesforce">
+    </div>
+    <div class="hero-eyebrow">HBF &nbsp;·&nbsp; Salesforce Workshop &nbsp;·&nbsp; 21 May 2026</div>
+    <h1>Powering Sustainable Growth with Data&nbsp;Driven Moments&nbsp;That&nbsp;Matter</h1>
+  </div>
+  <div class="hero-strip">
+    <div class="hero-strip-inner">
+      <strong>Rachel Baldovino, Cindy Hoang, Caroline Swarbrick</strong>
+      <span>·</span> Salesforce Business Consulting
+      <span>·</span> May 2026
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 2: EXECUTIVE SUMMARY
+════════════════════════════════════════════════ -->
+<section class="section white">
+  <div class="wrap">
+    <div class="two-col">
+      <div class="card">
+        <p class="small-label" style="color:#022ac0;margin-bottom:12px">Executive Summary</p>
+        <ul class="clean">
+          <li>The recent HBF MarTech workshop brought together cross-functional leaders across Marketing, Digital, and Member Connect to align on a unified strategy for first-party data and personalisation.</li>
+          <li>HBF's ambition is to transition from a reactive health insurer to a proactive <strong>"health partner"</strong> (the HBF30 vision), driving net policy growth through improved East Coast acquisition and Western Australia member retention.</li>
+          <li>By architecting a centralised decisioning engine powered by the Salesforce ecosystem, HBF can move from segment-based "spray and pray" marketing to <strong>1:1 personalisation</strong>, establishing a formidable competitive moat.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="small-label" style="color:#022ac0;margin-bottom:12px">What We Set Out to Achieve</p>
+        <ul class="clean">
+          <li>Align disparate MarTech groups on an agreed-upon set of priorities and top-tier use cases that leverage first-party data.</li>
+          <li>Establish a working definition of what personalisation means for HBF — making members feel <strong>"supported," "empowered," and "seen."</strong></li>
+          <li>Align use cases against three core personas to balance acquisition and retention: the <strong>New-to-Market</strong> prospect (WA focused), the <strong>Occasional Switcher</strong> (East Coast focused), and the <strong>Stayer</strong> (long-term existing member).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 3: CHALLENGE STATEMENT
+════════════════════════════════════════════════ -->
+<section class="section" style="background:#f0f4f8;padding:48px 0">
+  <div class="wrap">
+    <div class="challenge-box">
+      <div class="eyebrow">The Challenge We Set Out to Solve</div>
+      <p class="challenge-stmt">
+        How might <span class="hl-hbf">HBF</span>
+        <span class="hl-cyan"> Activate their Data</span> to
+        <span class="hl-cyan"> Drive Sustainable Growth</span> and become the
+        <span class="hl-gold"> Trusted Health Partner Interstate</span> by 2030
+      </p>
+    </div>
+
+    <p style="font-size:15px;font-weight:700;color:#001e5b;margin-bottom:16px">What we will co-create today</p>
+    <div class="agenda-grid">
+      <div class="agenda-card">
+        <div class="agenda-num">1</div>
+        <h4>A Definition of Personalisation for HBF</h4>
+        <p>Definitions, Emotions, Key Moments</p>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-num">2</div>
+        <h4>A Practical Roadmap of Horizons of Use Cases</h4>
+        <p>A team alignment to unlocking immediate value and setting the future scope</p>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-num">3</div>
+        <h4>Personalisation Content Mapping</h4>
+        <p>Identifying detail agreed to audience segments, goals and the results</p>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-num">4</div>
+        <h4>Data Systems Business View</h4>
+        <p>Understanding what we need for a data &amp; technology perspective</p>
+      </div>
+      <div class="agenda-card highlight">
+        <div class="agenda-num">5</div>
+        <h4>A Shared Vision for the Full Potential</h4>
+        <p>The vision for member personalisation at HBF — May 2027 (12M+)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 4: STRATEGIC PILLARS
+════════════════════════════════════════════════ -->
+<section class="section white">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">Strategic Pillars</span>
+      <h2 style="color:#fff;font-size:20px;margin:0">Four priorities shaping the transformation</h2>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="badge-lg b-vivid">1</div>
+        <div>
+          <h3>Sustainable Membership Growth</h3>
+          <p>National expansion, East Coast brand-building, and activating the 220K single-product cohort</p>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="badge-lg b-cyan">2</div>
+        <div>
+          <h3>Intelligent Personalisation at Scale</h3>
+          <p>Activate 1PD to deliver "Segment of One" experiences from acquisition through to loyalty</p>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="badge-lg b-teal">3</div>
+        <div>
+          <h3>Unified Data &amp; Decisioning</h3>
+          <p>Collapse the BigQuery / Snowflake / MC / Sitecore fragmentation into a single decisioning layer</p>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="badge-lg b-gold">4</div>
+        <div>
+          <h3>Operating Model Excellence</h3>
+          <p>Resolve audience ownership gaps, establish the MarTech working group, and build a RACI that enables execution at pace</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 5: WHAT WE HEARD
+════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">01</span>
+      <h2>What We Heard</h2>
+      <span class="pipe">—</span>
+      <span class="sub">Key themes from across the workshop</span>
+    </div>
+    <div class="three-col">
+      <div class="card-white">
+        <span class="theme-label theme-01">Theme 01</span>
+        <p class="theme-title">Data Limitations</p>
+        <p class="challenge-label">The Challenge</p>
+        <p style="font-size:13px;color:#303030;line-height:1.65;margin-bottom:10px">There is currently a lack of actionable data at every stage of the user funnels.</p>
+        <p style="font-size:13px;color:#303030;line-height:1.65;margin-bottom:10px">In early stage awareness there is a lack of identifying members across channels to optimise paid media spend, which leads to wasted spend and potentially detrimental new offers shown to existing customers.</p>
+        <p style="font-size:13px;color:#303030;line-height:1.65;margin-bottom:10px">In quote to conversion — an internal business rule currently dictates that all customer quote data (across branch, call centre, and digital) is purged from the CRM after 30 days. This practice completely destroys the ability to conduct long-term lead nurturing, forcing HBF to waste acquisition budget by constantly remarketing to the exact same prospects months down the line.</p>
+        <p style="font-size:13px;color:#303030;line-height:1.65">In later stage there is a lack of identification of members on web channels despite previous sessions or other device usage logged in.</p>
+        <div class="quote-box">
+          <p>"We currently have this business rule that blows away all quotes in the CRM after 30 days"</p>
+        </div>
+      </div>
+      <div class="card-white">
+        <span class="theme-label theme-02">Theme 02</span>
+        <p class="theme-title">Disconnected Experiences</p>
+        <p class="challenge-label">The Challenge</p>
+        <p style="font-size:13px;color:#303030;line-height:1.65;margin-bottom:10px">Current reliance on a custom-built, disparate incentives engine connected via a third-party integration layer (InRule) carries regulatory risk and technical debt.</p>
+        <p style="font-size:13px;color:#303030;line-height:1.65">Because data is not connected seamlessly across systems, current digital personalisation efforts remain isolated, rule-based, and generic (e.g. cookie-level targeting), rather than delivering true 1:1 contextual experiences. Personalisation is not able to operate in real time and deliver a real Health Partner benefit. It's currently inconsistent across channels.</p>
+        <div class="quote-box">
+          <p>"At the moment, I hate to say it, but it's a lot of spray and prey"</p>
+        </div>
+      </div>
+      <div class="card-white">
+        <span class="theme-label theme-03">Theme 03</span>
+        <p class="theme-title">Structural Silos — Technical and Team</p>
+        <p class="challenge-label">The Challenge</p>
+        <p style="font-size:13px;color:#303030;line-height:1.65;margin-bottom:10px">HBF's current operating model is divided across core customer deliverables by channel and funnel stage — Digital, CRM, and Marketing teams. Determining who designs &amp; builds audiences and who owns the end-to-end customer journey will expedite decisions. A centralised MarTech steering committee has been proposed as a support mechanism.</p>
+        <p style="font-size:13px;color:#303030;line-height:1.65">A unified architectural decision on where the personalisation decisioning engine sits will provide a single source of truth to support team collaboration.</p>
+        <div class="quote-box">
+          <p>"The two biggest blocks as to why this hasn't progressed already are just structure and accountability"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 6: DEFINING PERSONALISATION
+════════════════════════════════════════════════ -->
+<section class="section white">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">02</span>
+      <h2>Defining Personalisation</h2>
+      <span class="pipe">—</span>
+      <span class="sub">Language · Scenarios · Definition</span>
+    </div>
+    <p style="font-size:12px;font-weight:700;color:#022ac0;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">1. Co-Created Definition</p>
+    <div class="def-box">
+      <div class="def-eyebrow">HBF Personalisation — Agreed Definition</div>
+      <p class="def-quote">"Personalisation is how HBF earns every member's confidence by showing up in their everyday health journey so they feel empowered and confident in their health partner."</p>
+    </div>
+    <p style="font-size:12px;font-weight:700;color:#022ac0;letter-spacing:1px;text-transform:uppercase;margin:24px 0 14px">2. Variations (for consideration)</p>
+    <div class="option-card">
+      <span class="option-tag">Option 1 — Trusted Partner</span>
+      <p class="option-headline">"Showing up consistently"</p>
+      <p class="option-body">Personalisation is how HBF supports every member by showing up consistently and with relevance in their everyday lives, so that they always feel seen, valued and confident in their health partner.</p>
+    </div>
+    <div class="option-card">
+      <span class="option-tag">Option 2 — Empowerment Through Relevance</span>
+      <p class="option-headline">"Recognising where they are in life"</p>
+      <p class="option-body">Personalisation is how HBF empowers every member by recognising where they are in life and tailoring every interaction to what matters to them, so that they feel in control and confident their health partner is always working for them.</p>
+    </div>
+    <div class="option-card">
+      <span class="option-tag">Option 3 — Seamless &amp; Proactive Partnership</span>
+      <p class="option-headline">"Never feel the need to look elsewhere"</p>
+      <p class="option-body">Personalisation is how HBF earns every member's trust by proactively and seamlessly connecting them to the right support, products and moments throughout their lives, so that they never feel the need to look anywhere else.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 7: LANGUAGE IN THE ROOM + SCENARIOS
+════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">02 cont.</span>
+      <h2>Language &amp; Scenarios</h2>
+    </div>
+    <p style="font-size:12px;font-weight:700;color:#022ac0;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">3. Inputs — A) The Language in the Room</p>
+    <div class="card-white" style="margin-bottom:20px">
+      <p style="font-size:14px;color:#303030;margin-bottom:14px">These verbs came directly from the whiteboard. Most describe an emotional state the member arrives at — not a system feature. Personalisation earns these feelings.</p>
+      <div class="word-chips">
+        <span class="word-chip">Grateful</span><span class="word-chip">Seen</span><span class="word-chip">Rewarded</span>
+        <span class="word-chip">Supported</span><span class="word-chip">Showing up</span><span class="word-chip">Trust</span>
+        <span class="word-chip">Partner</span><span class="word-chip">Consistent</span><span class="word-chip">Seamless</span>
+        <span class="word-chip">Easy</span><span class="word-chip">Empowered</span><span class="word-chip">In control</span>
+        <span class="word-chip">Confident</span>
+      </div>
+      <div class="pattern-box">
+        <div class="pattern-label">The Pattern</div>
+        <p>Seen · Supported · Empowered · In control · Confident · Partner — these aren't outputs of a campaign. They're the result of consistently relevant, timely, respectful interactions across the whole member lifecycle.</p>
+      </div>
+    </div>
+
+    <p style="font-size:12px;font-weight:700;color:#022ac0;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">B) Personalisation Scenarios</p>
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <div class="scenario-num">01</div>
+        <div class="scenario-type">Switcher (Prospective)</div>
+        <div class="s-row"><div class="s-label">Data</div><div class="s-value">What a switcher was moving away from</div></div>
+        <div class="s-row"><div class="s-label">Mechanism</div><div class="s-value">Communicate tangible product &amp; service benefits</div></div>
+        <div class="s-row"><div class="s-label">Outcome</div><div class="s-outcome">High propensity to join HBF</div></div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-num">02</div>
+        <div class="scenario-type">Stayer</div>
+        <div class="s-row"><div class="s-label">Data</div><div class="s-value">Stayer that wants to cancel</div></div>
+        <div class="s-row"><div class="s-label">Mechanism</div><div class="s-value">Proactively intercept</div></div>
+        <div class="s-row"><div class="s-label">Outcome</div><div class="s-outcome">Stay / not churn / feel valued</div></div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-num">03</div>
+        <div class="scenario-type">Switcher</div>
+        <div class="s-row"><div class="s-label">Data</div><div class="s-value">Why they were switching — the prompt</div></div>
+        <div class="s-row"><div class="s-label">Mechanism</div><div class="s-value">Tailor product recommendation and comms</div></div>
+        <div class="s-row"><div class="s-label">Outcome</div><div class="s-outcome">They stay with us long term</div></div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-num">04</div>
+        <div class="scenario-type">Loyal Member</div>
+        <div class="s-row"><div class="s-label">Data</div><div class="s-value">When they started — tenure</div></div>
+        <div class="s-row"><div class="s-label">Mechanism</div><div class="s-value">Re-recognise their loyalty via HBF</div></div>
+        <div class="s-row"><div class="s-label">Outcome</div><div class="s-outcome">They recommend us to others</div></div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-num">05</div>
+        <div class="scenario-type">Stayer — Financial Stress</div>
+        <div class="s-row"><div class="s-label">Data</div><div class="s-value">Member experiencing financial difficulty</div></div>
+        <div class="s-row"><div class="s-label">Mechanism</div><div class="s-value">Let them know their options (pauses, payment plans)</div></div>
+        <div class="s-row"><div class="s-label">Outcome</div><div class="s-outcome">They choose the option that suits them and stay</div></div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-num">06</div>
+        <div class="scenario-type">Active / Lifestyle</div>
+        <div class="s-row"><div class="s-label">Data</div><div class="s-value">What activities they do in personal life</div></div>
+        <div class="s-row"><div class="s-label">Mechanism</div><div class="s-value">Offer advice for an achievable outcome</div></div>
+        <div class="s-row"><div class="s-label">Outcome</div><div class="s-outcome">They get value and keep going forward</div></div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-num">07</div>
+        <div class="scenario-type">Life-Event Trigger</div>
+        <div class="s-row"><div class="s-label">Data</div><div class="s-value">A trigger / life event — when likely to switch</div></div>
+        <div class="s-row"><div class="s-label">Mechanism</div><div class="s-value">Show them what's available and relevant</div></div>
+        <div class="s-row"><div class="s-label">Outcome</div><div class="s-outcome">They use HBF / stay / feel integrated</div></div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-num">08</div>
+        <div class="scenario-type">New to Market / Switcher</div>
+        <div class="s-row"><div class="s-label">Data</div><div class="s-value">Longer-term member's main preference</div></div>
+        <div class="s-row"><div class="s-label">Mechanism</div><div class="s-value">Personalise the end-to-end journey</div></div>
+        <div class="s-row"><div class="s-label">Outcome</div><div class="s-outcome">Increase conversions</div></div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-num">09</div>
+        <div class="scenario-type">Consideration Stage</div>
+        <div class="s-row"><div class="s-label">Data</div><div class="s-value">Goals / moments they're looking to achieve</div></div>
+        <div class="s-row"><div class="s-label">Mechanism</div><div class="s-value">Connect them to relevant support</div></div>
+        <div class="s-row"><div class="s-label">Outcome</div><div class="s-outcome">They feel in the consideration set</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 8a: USE CASES — MEMBER JOURNEY MAP
+════════════════════════════════════════════════ -->
+<section class="section" style="background:#f0f4f8">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">03a</span>
+      <h2>Use Cases — Member Journey Map</h2>
+      <span class="pipe">—</span>
+      <span class="sub">28 use cases across 5 lifecycle stages</span>
+    </div>
+
+    <div class="ucmap-grid">
+
+      <!-- AWARENESS -->
+      <div class="ucmap-col">
+        <div class="ucmap-header" style="background:#001e5b;color:#90d0fe">Awareness</div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Life Stage Event Prospecting</div>
+          <p class="ucmap-body">Turning 31, first child, entering the workforce, or a partner changing employer are high-probability triggers for a new health insurance decision. Build predictive or rules-based audiences around these life stage signals to intercept prospects at the exact moment their need for cover becomes urgent.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Provider Network as a Discovery Signal</div>
+          <p class="ucmap-body">An interaction with an HBF-affiliated physio, dental clinic, or GP is a signal of both health engagement and potential consideration. Surface targeted awareness content to uninsured prospects who engage with affiliated providers via co-marketing, directory listings, or digital referrals.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Partner Data Sharing &amp; Clean Rooms</div>
+          <p class="ucmap-body">Extend clean room data collaboration to partners such as HBF running events to enable personalised messaging for warm leads — without sharing raw customer data across organisational boundaries.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Advertising Exclusions (Suppression of Existing Members)</div>
+          <p class="ucmap-body">Sync current CRM members to Google, Meta, and other paid platforms to remove active policyholders from acquisition targeting. Eliminates wasted spend, avoids brand confusion of a member receiving a &#8216;join HBF&#8217; ad, and redirects media budget toward genuine net new prospects.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">AI Driven Lookalike Audience Prospecting</div>
+          <p class="ucmap-body">Identify the behavioural and demographic profile of HBF&#8217;s highest LTV members and build lookalike audiences on paid platforms. For the East Coast, target &#8220;good switcher&#8221; profiles — prospects likely to retain long-term rather than those who switch funds annually for the best deal.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Personalised Advertising — Geo-Targeted PHI Reform Education</div>
+          <p class="ucmap-body">Lifetime Health Cover loading and the April premium review motivate first-time purchasing decisions among younger East Coast prospects. Serve geo-targeted ads explaining PHI implications specific to the prospect&#8217;s age, location, and cover status — converting regulatory urgency into a positive brand conversation.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Adaptive Web Experiences</div>
+          <p class="ucmap-body">UC1 All continuity: unauthenticated page mirrors the ad message and offer for paid arrivals to reduce conversion friction. UC2 Geographic brand building: personalise vs. East Coast challenger with tailored content and agentic conversation. UC3 Comparison site intercept: detect aggregator referrals and tailor the landing to address live decision criteria.</p>
+        </div>
+      </div>
+
+      <div class="ucmap-arrow">›</div>
+
+      <!-- DISCOVER & ONBOARD -->
+      <div class="ucmap-col">
+        <div class="ucmap-header" style="background:#022ac0;color:#fff">Discover &amp; Onboard</div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Quote Retargeting &amp; Lead Nurture</div>
+          <p class="ucmap-body">Retain quote history for 12 months minimum to retarget uncommitted quotes with personalised messages relevant to zero-party data — and retarget prior to anniversary to interrupt the following year&#8217;s switching mindset.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Consistent Personalisation — Web &amp; Marketing</div>
+          <p class="ucmap-body">UC1 Digital Partner &amp; Co-Brand Journeys: custom co-branded landing pages for partner campaigns (e.g. Terry White, corporate benefits) with partner-specific incentives and sustained referral context. UC2 Consideration Stage Prospects: progressively tailor website content across repeat visits — moving from broad brand on visit one to specific product detail, social proof, and quote prompts by visit three.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Offer Management Decisioning</div>
+          <p class="ucmap-body">A centralised decisioning layer uses product interest, geography, life stage, and referral source to surface the single most relevant incentive at the moment of conversion. Reduces cognitive load and directly increases conversion rate versus surfacing all available offers to every prospect.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Onboarding Switcher Journey — Why HBF Brand Build</div>
+          <p class="ucmap-body">East Coast switchers have tried other insurers and arrived at HBF through a conscious comparison. Tailor onboarding content using survey data, engagement patterns, and prior fund claims history to address the specific value gaps they were seeking to fill — cementing retention before the first renewal.</p>
+        </div>
+      </div>
+
+      <div class="ucmap-arrow">›</div>
+
+      <!-- ACCESS -->
+      <div class="ucmap-col">
+        <div class="ucmap-header" style="background:#04a88a;color:#fff">Access</div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Cross-Platform Behavioural Personalisation</div>
+          <p class="ucmap-body">A member who visits hospital cover details in the authenticated portal, then visits the public HBF website unauthenticated, currently receives a generic experience. Stitch authenticated and unauthenticated identity to provide a continuously personalised journey with persistent content in-memory across sessions.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Personalised Cross Channel Journeys — Marketing &amp; Web</div>
+          <p class="ucmap-body">UC1 Claims Signal: connect claims data to Marketing Cloud journey triggers. UC2 Dated Preference Data: use stated preferences as a health partner. UC3 Extras Utilisation: real-time remaining balance alerts and reminders. UC4 End of Year Unused Benefits: personalised remaining balance, nearby providers, direct booking prompt. UC5 Preventative health: proactive recommendations based on browsed pages.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Health Moment &amp; Recovery Support</div>
+          <p class="ucmap-body">When a member lodges a significant claim — surgery, acute episode, or serious diagnosis — proactive, empathetic outreach acknowledges the claim, signposts relevant support services (mental health, rehabilitation, allied health support), and offers a direct line to the member care team. Transforms a transactional interaction into a demonstration of the health partner relationship.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Life Stage Predictive Product Recommendation</div>
+          <p class="ucmap-body">Using claims history, policy tenure, age, household composition, and life stage indicators, build a predictive model that identifies the next-best-product recommendation for each member. Surface at peak intent moments — post-claim, life event, or policy anniversary.</p>
+        </div>
+      </div>
+
+      <div class="ucmap-arrow">›</div>
+
+      <!-- MANAGE -->
+      <div class="ucmap-col">
+        <div class="ucmap-header" style="background:#032d60;color:#90d0fe">Manage</div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Single-Product Upgrade (NBA) Campaigns</div>
+          <p class="ucmap-body">~220,000 HBF members hold a single product only — hospital only or extras only — representing the highest value cross-sell opportunity in the existing base. In-app banners, personalised portal messages, and triggered email sequences surface the most relevant upgrade proposition at the moment of cross-sell intent.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Proactive Behavioural Distress Support</div>
+          <p class="ucmap-body">Navigation to pages associated with financial hardship, payment difficulty, or fund switching triggers a proactive member care flag. Reaching the member before they complete a cancellation or switch, and offering hardship support, a cover adjustment, or a payment plan.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Referral &amp; Member-Get-Member Campaigns</div>
+          <p class="ucmap-body">Identify members with high NPS proxy signals (low contact centre touchpoints, consistent claims utilisation, long tenure) and trigger personalised referral invitations at peak satisfaction moments. Cost per acquisition is structurally lower than paid media; quality of acquired members structurally higher.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Policy Health Check Triggers</div>
+          <p class="ucmap-body">A missed or late payment and life stage trigger (marriage, divorce, new dependants, dependant removal) are strong predictors of member review. These triggers initiate a personalised policy health check — acknowledging the change, offering a specialist review, and surfacing the most relevant cover adjustment.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Loyalty Recognition &amp; Anniversary Milestones</div>
+          <p class="ucmap-body">Long-tenure members receive no acknowledgement of loyalty while competitors actively target them with renewal communications. A personalised loyalty programme — milestone messages, exclusive benefits, priority access to new services — creates an emotional anchor that generic price-based retention offers cannot replicate.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Member Perks Personalisation &amp; Offer Curation</div>
+          <p class="ucmap-body">Integrate perks engagement data with the member 360 to surface personalised recommendations — gym claims members see fitness discount offers; members who browsed mental health content see relevant wellbeing perks. Makes the perks programme feel curated rather than generic, increasing both engagement and perceived membership value.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Extras Limit Alerts &amp; Benefit Optimisation</div>
+          <p class="ucmap-body">Trigger a personalised alert when a member approaches the annual limit on a frequently used extras benefit. Creates a timely, value-adding touchpoint that reinforces the health partner narrative and drives utilisation or upgrade depending on the member&#8217;s position relative to their limit.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Life Event &amp; Dependent Change Journeys</div>
+          <p class="ucmap-body">A child turning 25, a student returning home, a marriage — each signals that cover needs are in flux. Detect these changes and trigger a personalised journey confirming the policy is updated correctly, surfacing relevant next steps (family cover options, new-member onboarding for the dependant, household referral opportunities).</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">App &amp; Push Engagement Personalisation</div>
+          <p class="ucmap-body">UC1 Download Triggers &amp; Service Alerts: personalised push campaigns to drive app adoption, then push for claims updates, benefit reminders, and relevant content — increasing engagement frequency without increasing service cost. UC2 Tailored Claims UX: personalise the claims journey by product type, claim history, and channel preference.</p>
+        </div>
+      </div>
+
+      <div class="ucmap-arrow">›</div>
+
+      <!-- OFFBOARDING & RETENTION -->
+      <div class="ucmap-col">
+        <div class="ucmap-header" style="background:#c4014b;color:#fff">Offboarding &amp; Retention</div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">ID Pre-Cancellation Behaviour Detection</div>
+          <p class="ucmap-body">Members researching cancellation on web channels are displaying intent signals to leave. Connect authenticated website session data to the CRM in real time to identify pre-cancellation behaviours and trigger an intervention — via marketing or service channels — before the member reaches the point of action.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Cross-Channel Retention Journeys</div>
+          <p class="ucmap-body">A cancellation propensity model identifies members who have accumulated churn risk signals — arrears, missed payments, reduced claims activity, competitor brand interactions, and life stage changes. When a member crosses a risk threshold, trigger an automated multi-channel journey: personalised content, value messaging, a save offer, and a direct route to the specialist retention team.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Cross-Channel Win-Back Advertising</div>
+          <p class="ucmap-body">UC1 Target recently lapsed members via social and paid platforms with personalised creative and offers during the re-engagement window. UC2 Competitor Awareness Personalisation: where the fund a lapsed member moved to is known — via survey, social listening, or partner data — calibrate win-back communication to specifically address the perceived advantage of the competing fund.</p>
+        </div>
+        <div class="ucmap-card">
+          <div class="ucmap-title">Lapsed Member Segment Analysis</div>
+          <p class="ucmap-body">Systematically analyse exit surveys, cancellation reason codes, and behavioural patterns that preceded lapse (life events, tenure, product type, geography, and acquisition channel). Determine whether churn is driven by price sensitivity, product dissatisfaction, life stage exits, or competitive switching — and tailor the re-engagement approach for each segment accordingly.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 8: PERSONALISATION USE CASES
+════════════════════════════════════════════════ -->
+<section class="section white">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">03</span>
+      <h2>Personalisation Use Cases</h2>
+      <span class="pipe">—</span>
+      <span class="sub">28 use cases mapped across four phases</span>
+    </div>
+
+    <!-- Phase legend -->
+    <div style="display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap">
+      <span><span class="phase-pill p1">Phase 1</span> <span style="font-size:13px;color:#505050">Acquire &amp; Activate</span></span>
+      <span><span class="phase-pill p2">Phase 2</span> <span style="font-size:13px;color:#505050">Convert &amp; Engage</span></span>
+      <span><span class="phase-pill p3">Phase 3</span> <span style="font-size:13px;color:#505050">Maximise Value</span></span>
+      <span><span class="phase-pill p4">Phase 4</span> <span style="font-size:13px;color:#505050">Build Loyalty</span></span>
+    </div>
+
+    <!-- Phase 1 -->
+    <div class="uc-phase-header">
+      <div class="phase-dot" style="background:#00b3ff;width:12px;height:12px;border-radius:50%"></div>
+      <h3>Phase 1 — Acquire &amp; Activate the Right Members</h3>
+    </div>
+    <table class="uc-table">
+      <thead><tr><th style="width:32px">#</th><th>Use Case</th><th>Value Rationale</th><th>Products</th><th style="width:110px">Member Journey</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge b-cyan">1</span></td><td><span class="uc-name">Life Stage Event Prospecting</span></td><td class="uc-desc">Targets a high-intent moment — predicting new family, ageing parents, new job to reach prospects at peak insurance intent</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Attract & Target</td></tr>
+        <tr><td><span class="badge b-cyan">2</span></td><td><span class="uc-name">Provider Network as a Discovery Signal</span></td><td class="uc-desc">Useful awareness signal — HBF-affiliated physio, dental or GP engagement as prospecting trigger</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Attract & Target</td></tr>
+        <tr><td><span class="badge b-cyan">3</span></td><td><span class="uc-name">Partner Data Sharing &amp; Clean Rooms</span></td><td class="uc-desc">Foundational infrastructure — PHI-safe clean room partnerships and co-marketing with provider networks</td><td><span class="products-tag">Data Cloud</span></td><td style="font-size:11px;color:#505050">Attract & Target</td></tr>
+        <tr><td><span class="badge b-cyan">4</span></td><td><span class="uc-name">Advertising Exclusions</span></td><td class="uc-desc">Suppress active members and recent joiners from acquisition campaigns — protecting brand experience and media budget</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Attract & Target</td></tr>
+        <tr><td><span class="badge b-cyan">5</span></td><td><span class="uc-name">AI-Driven Lookalike Audience Prospecting</span></td><td class="uc-desc">Build lookalike audiences from HBF's best member profiles to fuel East Coast growth — directly supports net new member goals</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Attract & Target</td></tr>
+        <tr><td><span class="badge b-cyan">6</span></td><td><span class="uc-name">Personalised Advertising – Geo-Targeted PHI Reform</span></td><td class="uc-desc">Relevant for first-time buyers — geographic targeting of PHI reform messaging with regulatory-safe ad serving</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Attract & Target</td></tr>
+        <tr><td><span class="badge b-cyan">7</span></td><td><span class="uc-name">Quote Retargeting &amp; Lead Nurture</span></td><td class="uc-desc">Re-engage prospects who started but didn't complete a quote — proven mid-funnel recovery pattern with measurable conversion lift</td><td><span class="products-tag">MCE+ · Data Cloud</span></td><td style="font-size:11px;color:#505050">Acquire & Convert</td></tr>
+        <tr><td><span class="badge b-cyan">8</span></td><td><span class="uc-name">Onboarding Switcher Journey</span></td><td class="uc-desc">First 90 days set churn trajectory — personalised welcome tailored to prior fund history deepens relationship from day one</td><td><span class="products-tag">MCE+ · Data Cloud</span></td><td style="font-size:11px;color:#505050">Acquire & Convert</td></tr>
+        <tr><td><span class="badge b-cyan">9</span></td><td><span class="uc-name">Referral &amp; Member-Get-Member Campaigns</span></td><td class="uc-desc">Structurally lower CAC than paid — referred members show higher LTV and loyalty; 1PD-powered automated incentives</td><td><span class="products-tag">MCE+ · Data Cloud · Referral Marketing</span></td><td style="font-size:11px;color:#505050">Loyalty & Advocacy</td></tr>
+        <tr><td><span class="badge b-cyan">10</span></td><td><span class="uc-name">Cross-Channel Win-Back Advertising</span></td><td class="uc-desc">Re-engage lapsed members via targeted retargeting and survey-based audience segmentation</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Retain</td></tr>
+        <tr><td><span class="badge b-cyan">11</span></td><td><span class="uc-name">Lapsed Member Segment Analysis</span></td><td class="uc-desc">Analytical foundation for win-back strategy — understanding why members leave to sharpen reacquisition targeting</td><td><span class="products-tag">Data Cloud · Tableau</span></td><td style="font-size:11px;color:#505050">Retain</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Phase 2 -->
+    <div class="uc-phase-header" style="margin-top:28px">
+      <div class="phase-dot" style="background:#04e1cb"></div>
+      <h3>Phase 2 — Convert &amp; Engage Across Every Channel</h3>
+    </div>
+    <table class="uc-table">
+      <thead><tr><th style="width:32px">#</th><th>Use Case</th><th>Value Rationale</th><th>Products</th><th style="width:110px">Member Journey</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge b-teal">12</span></td><td><span class="uc-name">Adaptive Web Experiences</span></td><td class="uc-desc">Personalise HBF's highest-traffic owned channel in real time for both known members and anonymous visitors</td><td><span class="products-tag">Data Cloud · Personalization</span></td><td style="font-size:11px;color:#505050">Acquire & Convert</td></tr>
+        <tr><td><span class="badge b-teal">13</span></td><td><span class="uc-name">Consistent Personalisation – Web &amp; Marketing</span></td><td class="uc-desc">Drives coherent member experience across owned channels — unified profile stitching across web and campaign touchpoints</td><td><span class="products-tag">Data Cloud · Personalization · MCE+</span></td><td style="font-size:11px;color:#505050">Acquire & Convert</td></tr>
+        <tr><td><span class="badge b-teal">14</span></td><td><span class="uc-name">Cross-Platform Behavioural Personalisation</span></td><td class="uc-desc">Stitch authenticated and unauthenticated sessions to create a truly continuous member experience across web, app, and email</td><td><span class="products-tag">Data Cloud · Personalization</span></td><td style="font-size:11px;color:#505050">Engage & Grow</td></tr>
+        <tr><td><span class="badge b-teal">15</span></td><td><span class="uc-name">Personalised Cross Channel Journeys</span></td><td class="uc-desc">Connect claims events and life moments to relevant, timely outreach — claims data linked directly to MC journey triggers</td><td><span class="products-tag">Data Cloud · MCE+ · Personalization</span></td><td style="font-size:11px;color:#505050">Engage & Grow</td></tr>
+        <tr><td><span class="badge b-teal">16</span></td><td><span class="uc-name">Health Moment &amp; Recovery Support</span></td><td class="uc-desc">Emotionally resonant and differentiating — claims event triggers coordinated with care team workflows</td><td><span class="products-tag">Data Cloud · MCE+ · Health Cloud</span></td><td style="font-size:11px;color:#505050">Engage & Grow</td></tr>
+        <tr><td><span class="badge b-teal">17</span></td><td><span class="uc-name">Proactive Behavioural Distress Support</span></td><td class="uc-desc">Detect navigation distress signals and route at-risk members to care team before disengagement</td><td><span class="products-tag">Data Cloud · Personalization · Service Cloud</span></td><td style="font-size:11px;color:#505050">Retain</td></tr>
+        <tr><td><span class="badge b-teal">18</span></td><td><span class="uc-name">Policy Health Check Triggers</span></td><td class="uc-desc">Proactive engagement at life events builds trust, reduces policy mismatch churn — strong NPS driver</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Engage & Grow</td></tr>
+        <tr><td><span class="badge b-teal">19</span></td><td><span class="uc-name">Extras Limit Alerts &amp; Benefit Optimisation</span></td><td class="uc-desc">Timely benefit utilisation alerts reinforce the health partner narrative and drive extras engagement</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Engage & Grow</td></tr>
+        <tr><td><span class="badge b-teal">20</span></td><td><span class="uc-name">Life Event &amp; Dependent Change Journeys</span></td><td class="uc-desc">Policy updates at life events (new child, marriage, returning home) reduce churn and surface add-on opportunities</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Engage & Grow</td></tr>
+        <tr><td><span class="badge b-teal">21</span></td><td><span class="uc-name">App &amp; Push Engagement Personalisation</span></td><td class="uc-desc">Drive app adoption and reduce service cost — personalised push for claims journey, benefit reminders, and service alerts</td><td><span class="products-tag">MCE+ · Data Cloud</span></td><td style="font-size:11px;color:#505050">Engage & Grow</td></tr>
+        <tr><td><span class="badge b-teal">22</span></td><td><span class="uc-name">ID Pre-Cancellation Behaviour Detection</span></td><td class="uc-desc">Intervening before cancellation is far more cost-effective than win-back — real-time behavioural signals trigger rapid multi-channel response</td><td><span class="products-tag">Data Cloud · Personalization · MCE+</span></td><td style="font-size:11px;color:#505050">Retain</td></tr>
+        <tr><td><span class="badge b-teal">23</span></td><td><span class="uc-name">Cross-Channel Retention Journeys</span></td><td class="uc-desc">Churn risk model + automated multi-channel journey — proven high-ROI retention pattern across service and marketing channels</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Retain</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Phase 3 -->
+    <div class="uc-phase-header" style="margin-top:28px">
+      <div class="phase-dot" style="background:#fcc003"></div>
+      <h3>Phase 3 — Maximise Value Through Intelligent Product Decisioning</h3>
+    </div>
+    <table class="uc-table">
+      <thead><tr><th style="width:32px">#</th><th>Use Case</th><th>Value Rationale</th><th>Products</th><th style="width:110px">Member Journey</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge b-gold">24</span></td><td><span class="uc-name">Offer Management Decisioning</span></td><td class="uc-desc">Core capability — centralised decisioning engine integrating product eligibility, geography, and propensity. Removes cognitive load at conversion, maximises offer relevance, directly lifts ACV</td><td><span class="products-tag">Data Cloud · Personalization · MCE+</span></td><td style="font-size:11px;color:#505050">Acquire & Convert</td></tr>
+        <tr><td><span class="badge b-gold">25</span></td><td><span class="uc-name">Life Stage Predictive Product Recommendation</span></td><td class="uc-desc">Claims history + household data + ML modelling generates next-best-product recommendation at peak intent moments</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Engage & Grow</td></tr>
+        <tr><td><span class="badge b-gold">26</span></td><td><span class="uc-name">Single-Product Upgrade (NBA) Campaigns</span></td><td class="uc-desc">Highest commercial value — 220,000 single-product members is the biggest cross-sell opportunity in the book. NBA logic with propensity modelling and personalised upgrade pathways</td><td><span class="products-tag">Data Cloud · MCE+</span></td><td style="font-size:11px;color:#505050">Engage & Grow</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Phase 4 -->
+    <div class="uc-phase-header" style="margin-top:28px">
+      <div class="phase-dot" style="background:#ff538a"></div>
+      <h3>Phase 4 — Build Loyalty That Can't Be Replicated on Price</h3>
+    </div>
+    <table class="uc-table">
+      <thead><tr><th style="width:32px">#</th><th>Use Case</th><th>Value Rationale</th><th>Products</th><th style="width:110px">Member Journey</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge b-pink">27</span></td><td><span class="uc-name">Loyalty Recognition &amp; Anniversary Milestones</span></td><td class="uc-desc">Creates emotional anchor for long-tenure members — meaningful recognition that a cheaper competitor cannot replicate</td><td><span class="products-tag">Loyalty · MCE+</span></td><td style="font-size:11px;color:#505050">Loyalty & Advocacy</td></tr>
+        <tr><td><span class="badge b-pink">28</span></td><td><span class="uc-name">Member Perks Personalisation &amp; Offer Curation</span></td><td class="uc-desc">Transforms perks from generic to curated — member 360 integration with perks catalogue drives perceived membership value and retention</td><td><span class="products-tag">Loyalty · Data Cloud · Personalization</span></td><td style="font-size:11px;color:#505050">Loyalty & Advocacy</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 9: PRIORITISATION
+════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">04</span>
+      <h2>Prioritisation</h2>
+      <span class="pipe">—</span>
+      <span class="sub">Value vs Complexity · 28 Use Cases</span>
+    </div>
+
+    <div class="prio-layout">
+    <!-- Left: use case list -->
+    <div>
+    <p style="font-size:11px;font-weight:700;color:#001e5b;margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px">Use Case Index</p>
+    <div class="uc-numbered-list">
+      <div class="uc-item"><span class="badge b-cyan">1</span><span class="uc-item-name">Life Stage Event Prospecting</span></div>
+      <div class="uc-item"><span class="badge b-cyan">2</span><span class="uc-item-name">Provider Network as a Discovery Signal</span></div>
+      <div class="uc-item"><span class="badge b-cyan">3</span><span class="uc-item-name">Partner Data Sharing &amp; Clean Rooms</span></div>
+      <div class="uc-item"><span class="badge b-cyan">4</span><span class="uc-item-name">Advertising Exclusions</span></div>
+      <div class="uc-item"><span class="badge b-cyan">5</span><span class="uc-item-name">AI-Driven Lookalike Audience Prospecting</span></div>
+      <div class="uc-item"><span class="badge b-cyan">6</span><span class="uc-item-name">Personalised Advertising – Geo-Targeted PHI Reform</span></div>
+      <div class="uc-item"><span class="badge b-teal">7</span><span class="uc-item-name">Adaptive Web Experiences</span></div>
+      <div class="uc-item"><span class="badge b-cyan">8</span><span class="uc-item-name">Quote Retargeting &amp; Lead Nurture</span></div>
+      <div class="uc-item"><span class="badge b-teal">9</span><span class="uc-item-name">Consistent Personalisation – Web &amp; Marketing</span></div>
+      <div class="uc-item"><span class="badge b-gold">10</span><span class="uc-item-name">Offer Management Decisioning</span></div>
+      <div class="uc-item"><span class="badge b-cyan">11</span><span class="uc-item-name">Onboarding Switcher Journey</span></div>
+      <div class="uc-item"><span class="badge b-teal">12</span><span class="uc-item-name">Cross-Platform Behavioural Personalisation</span></div>
+      <div class="uc-item"><span class="badge b-teal">13</span><span class="uc-item-name">Personalised Cross Channel Journeys</span></div>
+      <div class="uc-item"><span class="badge b-teal">14</span><span class="uc-item-name">Health Moment &amp; Recovery Support</span></div>
+      <div class="uc-item"><span class="badge b-gold">15</span><span class="uc-item-name">Life Stage Predictive Product Recommendation</span></div>
+      <div class="uc-item"><span class="badge b-gold">16</span><span class="uc-item-name">Single-Product Upgrade (NBA) Campaigns</span></div>
+      <div class="uc-item"><span class="badge b-teal">17</span><span class="uc-item-name">Proactive Behavioural Distress Support</span></div>
+      <div class="uc-item"><span class="badge b-cyan">18</span><span class="uc-item-name">Referral &amp; Member-Get-Member Campaigns</span></div>
+      <div class="uc-item"><span class="badge b-teal">19</span><span class="uc-item-name">Policy Health Check Triggers</span></div>
+      <div class="uc-item"><span class="badge b-pink">20</span><span class="uc-item-name">Loyalty Recognition &amp; Anniversary Milestones</span></div>
+      <div class="uc-item"><span class="badge b-pink">21</span><span class="uc-item-name">Member Perks Personalisation &amp; Offer Curation</span></div>
+      <div class="uc-item"><span class="badge b-teal">22</span><span class="uc-item-name">Extras Limit Alerts &amp; Benefit Optimisation</span></div>
+      <div class="uc-item"><span class="badge b-teal">23</span><span class="uc-item-name">Life Event &amp; Dependent Change Journeys</span></div>
+      <div class="uc-item"><span class="badge b-teal">24</span><span class="uc-item-name">App &amp; Push Engagement Personalisation</span></div>
+      <div class="uc-item"><span class="badge b-teal">25</span><span class="uc-item-name">ID Pre-Cancellation Behaviour Detection</span></div>
+      <div class="uc-item"><span class="badge b-teal">26</span><span class="uc-item-name">Cross-Channel Retention Journeys</span></div>
+      <div class="uc-item"><span class="badge b-cyan">27</span><span class="uc-item-name">Cross-Channel Win-Back Advertising</span></div>
+      <div class="uc-item"><span class="badge b-cyan">28</span><span class="uc-item-name">Lapsed Member Segment Analysis</span></div>
+    </div>
+    </div><!-- /left -->
+
+    <!-- Right: matrix -->
+    <div>
+    <p style="font-size:11px;font-weight:700;color:#001e5b;margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px">Value vs Complexity Matrix</p>
+    <div style="display:grid;grid-template-columns:32px 1fr;grid-template-rows:1fr 36px;height:480px;margin-bottom:8px">
+      <div style="grid-row:1;grid-column:1;display:flex;align-items:center;justify-content:center">
+        <span style="font-size:10px;font-weight:800;color:#001e5b;letter-spacing:1px;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap">← Low &nbsp; VALUE &nbsp; High →</span>
+      </div>
+      <div style="grid-row:1;grid-column:2;position:relative;border:2px solid #c8d8ee;border-radius:8px;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;width:50%;height:50%;background:#e4f7f3"></div>
+        <div style="position:absolute;top:0;right:0;width:50%;height:50%;background:#eaeffd"></div>
+        <div style="position:absolute;bottom:0;left:0;width:50%;height:50%;background:#f3f8ff"></div>
+        <div style="position:absolute;bottom:0;right:0;width:50%;height:50%;background:#fdf6ed"></div>
+        <div style="position:absolute;top:0;bottom:0;left:50%;width:1.5px;background:rgba(0,30,91,.15)"></div>
+        <div style="position:absolute;left:0;right:0;top:50%;height:1.5px;background:rgba(0,30,91,.15)"></div>
+        <div style="position:absolute;top:10px;left:10px;font-size:10px;font-weight:800;color:#04a88a;letter-spacing:.8px;text-transform:uppercase;opacity:.9;background:rgba(255,255,255,.6);padding:2px 6px;border-radius:3px">Quick Wins</div>
+        <div style="position:absolute;top:10px;right:10px;font-size:10px;font-weight:800;color:#022ac0;letter-spacing:.8px;text-transform:uppercase;opacity:.9;background:rgba(255,255,255,.6);padding:2px 6px;border-radius:3px">Strategic Bets</div>
+        <div style="position:absolute;bottom:10px;left:10px;font-size:10px;font-weight:800;color:#5580aa;letter-spacing:.8px;text-transform:uppercase;opacity:.9;background:rgba(255,255,255,.6);padding:2px 6px;border-radius:3px">Foundational</div>
+        <div style="position:absolute;bottom:10px;right:10px;font-size:10px;font-weight:800;color:#b07000;letter-spacing:.8px;text-transform:uppercase;opacity:.9;background:rgba(255,255,255,.6);padding:2px 6px;border-radius:3px">Deprioritise</div>
+
+        <!-- DOTS  x=((C-2)/3)*100  y=((5-V)/3)*100 -->
+        <div class="dot d1" style="left:66.7%;top:50%" title="1 · Life Stage Event Prospecting">1</div>
+        <div class="dot d1" style="left:33.3%;top:83.3%" title="2 · Provider Network">2</div>
+        <div class="dot d1" style="left:80%;top:87%" title="3 · Clean Rooms">3</div>
+        <div class="dot d1" style="left:2%;top:66.7%" title="4 · Advertising Exclusions">4</div>
+        <div class="dot d1" style="left:45%;top:46%" title="5 · AI Lookalike">5</div>
+        <div class="dot d1" style="left:33.3%;top:66.7%" title="6 · Geo PHI Advertising">6</div>
+        <div class="dot d2" style="left:62%;top:30%" title="7 · Adaptive Web">7</div>
+        <div class="dot d1" style="left:13%;top:50%" title="8 · Quote Retargeting">8</div>
+        <div class="dot d2" style="left:44%;top:30%" title="9 · Consistent Personalisation">9</div>
+        <div class="dot d3" style="left:96%;top:17%" title="10 · Offer Management Decisioning">10</div>
+        <div class="dot d1" style="left:28%;top:43%" title="11 · Onboarding Switcher">11</div>
+        <div class="dot d2" style="left:83.3%;top:17%" title="12 · Cross-Platform Behavioural">12</div>
+        <div class="dot d2" style="left:71%;top:30%" title="13 · Personalised Cross Channel">13</div>
+        <div class="dot d2" style="left:55%;top:54%" title="14 · Health Moment Recovery">14</div>
+        <div class="dot d3" style="left:67%;top:38%" title="15 · Life Stage Product Rec">15</div>
+        <div class="dot d3" style="left:50%;top:2%" title="16 · Single-Product Upgrade NBA">16</div>
+        <div class="dot d2" style="left:50%;top:66.7%" title="17 · Behavioural Distress">17</div>
+        <div class="dot d1" style="left:16.7%;top:33.3%" title="18 · Referral MGM">18</div>
+        <div class="dot d2" style="left:37%;top:43%" title="19 · Policy Health Check">19</div>
+        <div class="dot d4" style="left:29%;top:57%" title="20 · Loyalty Recognition">20</div>
+        <div class="dot d4" style="left:62%;top:17%" title="21 · Member Perks">21</div>
+        <div class="dot d2" style="left:20%;top:50%" title="22 · Extras Limit Alerts">22</div>
+        <div class="dot d2" style="left:55%;top:30%" title="23 · Life Event &amp; Dependent">23</div>
+        <div class="dot d2" style="left:38%;top:57%" title="24 · App Push Engagement">24</div>
+        <div class="dot d2" style="left:71%;top:17%" title="25 · Pre-Cancellation Detection">25</div>
+        <div class="dot d2" style="left:50%;top:38%" title="26 · Cross-Channel Retention">26</div>
+        <div class="dot d1" style="left:16.7%;top:66.7%" title="27 · Win-Back Advertising">27</div>
+        <div class="dot d1" style="left:2%;top:83.3%" title="28 · Lapsed Member Analysis">28</div>
+      </div>
+      <div style="grid-row:2;grid-column:2;display:flex;justify-content:space-between;align-items:center;padding:6px 8px 0">
+        <span style="font-size:11px;font-weight:700;color:#001e5b">← Low</span>
+        <span style="font-size:11px;font-weight:800;color:#001e5b;letter-spacing:1px;text-transform:uppercase">COMPLEXITY</span>
+        <span style="font-size:11px;font-weight:700;color:#001e5b">High →</span>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 16px;background:#fff;border-radius:8px;border:1px solid #dde8f5;margin-top:8px">
+      <span style="font-size:11px;font-weight:700;color:#505050;white-space:nowrap">Phase key:</span>
+      <span style="display:flex;align-items:center;gap:5px"><span class="badge b-cyan" style="width:18px;height:18px;font-size:8px;display:inline-flex">P1</span><span style="font-size:11px;white-space:nowrap">Acquire &amp; Activate</span></span>
+      <span style="display:flex;align-items:center;gap:5px"><span class="badge b-teal" style="width:18px;height:18px;font-size:8px;display:inline-flex">P2</span><span style="font-size:11px;white-space:nowrap">Convert &amp; Engage</span></span>
+      <span style="display:flex;align-items:center;gap:5px"><span class="badge b-gold" style="width:18px;height:18px;font-size:8px;display:inline-flex">P3</span><span style="font-size:11px;white-space:nowrap">Maximise Value</span></span>
+      <span style="display:flex;align-items:center;gap:5px"><span class="badge b-pink" style="width:18px;height:18px;font-size:8px;display:inline-flex">P4</span><span style="font-size:11px;white-space:nowrap">Build Loyalty</span></span>
+    </div>
+    </div><!-- /right -->
+    </div><!-- /prio-layout -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 10: IMPACT DRIVERS
+════════════════════════════════════════════════ -->
+<section class="section white">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">05</span>
+      <h2>Impact Drivers</h2>
+      <span class="pipe">—</span>
+      <span class="sub">Key metrics and value anchors</span>
+    </div>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">Member Base</div>
+        <div class="metric-value">1,056,496</div>
+        <div class="metric-sub">WA: 894K &nbsp;|&nbsp; ES: 162K</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Quote Velocity (Annual)</div>
+        <div class="metric-value">205K</div>
+        <div class="metric-sub">17.1k 30-day avg &nbsp;|&nbsp; WA: 10.6K &nbsp;|&nbsp; ES: 6.5K</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Conversion Rate (YTD)</div>
+        <div class="metric-value">43% Avg</div>
+        <div class="metric-sub">WA: 43% &nbsp;|&nbsp; ES: 43%</div>
+      </div>
+      <div class="metric-card" style="border-top-color:#04e1cb">
+        <div class="metric-label" style="color:#04a88a">New Members (Annual)</div>
+        <div class="metric-value">~88K</div>
+        <div class="metric-sub">N2M: 63% &nbsp;|&nbsp; Switchers 37% of Annual PHI Policy Sales (FY25)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Annual Member Base Change</div>
+        <div class="metric-value">~1.25%</div>
+        <div class="metric-sub">Lapsed approx 75k, gained approx 88K</div>
+      </div>
+    </div>
+    <div class="metric-grid-2" style="margin-top:14px">
+      <div class="metric-card" style="border-top-color:#022ac0">
+        <div class="metric-label" style="color:#022ac0">Average Premium</div>
+        <div class="metric-value">$3,804 p.a.</div>
+        <div class="metric-sub">Average annual premium per policy</div>
+      </div>
+      <div class="metric-card accent" style="border-top-color:#fcc003">
+        <div class="metric-label">Single Product Members</div>
+        <div class="metric-value">224,720</div>
+        <div class="metric-sub">175K Extras &nbsp;/&nbsp; 49K Hospital</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Lapsed Members</div>
+        <div class="metric-value">~75K p.a.</div>
+        <div class="metric-sub">&nbsp;</div>
+      </div>
+      <div class="metric-card" style="border-top-color:#ff538a">
+        <div class="metric-label" style="color:#c0004a">Churn Rate</div>
+        <div class="metric-value">7.4%</div>
+        <div class="metric-sub">WA: 6.2% &nbsp;|&nbsp; ES: 15.3%</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+      <div class="metric-card" style="border-top-color:#032d60">
+        <div class="metric-label">CPA by Channel</div>
+        <div class="metric-value" style="font-size:18px;margin-bottom:6px">Measurability Challenge</div>
+        <div class="metric-sub">Broker &amp; Affiliates: $1K CPA (contractual) &nbsp;·&nbsp; Other Channels: Currently undefined / not measurable (Branch, Online, Call Centre)</div>
+      </div>
+      <div class="metric-card" style="border-top-color:#00b3ff">
+        <div class="metric-label" style="color:#0090cc">Media CPA</div>
+        <div class="metric-value">$361</div>
+        <div class="metric-sub">Calculated as Media / Total Sales</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 11: 4-PHASE ROADMAP
+════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">06</span>
+      <h2>HBF Transformation Roadmap</h2>
+      <span class="pipe">—</span>
+      <span class="sub">4 Phases of Strategic Vision</span>
+    </div>
+    <p class="lead" style="margin-bottom:28px;color:#303030">HBF's transformation is structured across four phases, each building on the last to progressively shift from broad acquisition and foundational data capability through to a deeply personalised, loyalty-driven membership experience. Together they form a coherent arc: <strong>attract the right members → convert and engage them meaningfully → retain them proactively → reward them in ways that create lasting loyalty.</strong></p>
+
+    <!-- Phase connector -->
+    <div class="connector-row" style="margin-bottom:20px">
+      <div class="conn-block" style="background:#001e5b;color:#fff">Phase 1<br><span style="font-size:11px;font-weight:400;opacity:.8">Acquire &amp; Activate</span></div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-block" style="background:#022ac0;color:#fff">Phase 2<br><span style="font-size:11px;font-weight:400;opacity:.8">Convert &amp; Engage</span></div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-block" style="background:#032d60;color:#fff">Phase 3<br><span style="font-size:11px;font-weight:400;opacity:.8">Maximise Value</span></div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-block" style="background:#066afe;color:#fff">Phase 4<br><span style="font-size:11px;font-weight:400;opacity:.8">Build Loyalty</span></div>
+    </div>
+
+    <div class="phase-grid">
+      <!-- Phase 1 -->
+      <div class="phase-card">
+        <div class="phase-header phase-h1">
+          <div class="phase-tag" style="color:#90d0fe">Phase 1</div>
+          <div class="phase-title">Acquire &amp; Activate the Right Members</div>
+        </div>
+        <div class="phase-body">
+          <p class="phase-intent"><strong>Strategic Intent:</strong> Build the data and media infrastructure to attract high-value prospects and convert them more efficiently — with less wasted spend and more precision targeting.</p>
+          <p style="font-size:12px;color:#303030;line-height:1.6;margin-bottom:10px">Phase 1 lays the essential groundwork for everything that follows. The focus is on getting HBF in front of the right people at the right moment — whether that's someone experiencing a life stage event, a lapsed member who can be recaptured, or a net-new prospect who looks like HBF's best customers. It also establishes the data hygiene and suppression logic that prevents wasted ad spend on existing members or poor-fit audiences.</p>
+          <h4>Key business capabilities unlocked:</h4>
+          <ul>
+            <li>Predict life stage moments (new family, ageing parents, new job) to reach prospects at peak insurance intent</li>
+            <li>Build AI-driven lookalike audiences from HBF's best member profiles to fuel East Coast growth</li>
+            <li>Suppress active members and recent joiners from acquisition campaigns — protecting brand experience and media budget</li>
+            <li>Re-engage prospects who started but didn't complete a quote</li>
+            <li>Lay the data foundation for clean room partnerships and co-marketing with provider networks</li>
+          </ul>
+        </div>
+        <div class="phase-products">Salesforce products: Data Cloud · MCE+</div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-card">
+        <div class="phase-header phase-h2">
+          <div class="phase-tag" style="color:#cfe9fe">Phase 2</div>
+          <div class="phase-title">Convert &amp; Engage Across Every Channel</div>
+        </div>
+        <div class="phase-body">
+          <p class="phase-intent"><strong>Strategic Intent:</strong> Create a seamless, personalised experience across web, app, and marketing channels that removes friction from conversion and deepens engagement for existing members.</p>
+          <p style="font-size:12px;color:#303030;line-height:1.6;margin-bottom:10px">With acquisition signals flowing, Phase 2 shifts the focus inward — to the experience HBF delivers once a prospect or member is actively engaging. This phase is about eliminating the disjointed, one-size-fits-all experience and replacing it with one that feels genuinely responsive. A prospect visiting the website should see content relevant to their situation. A member who's just made a significant claim should receive tailored support. Someone at risk of cancelling should be reached before they act.</p>
+          <h4>Key business capabilities unlocked:</h4>
+          <ul>
+            <li>Personalise the HBF website in real time for both known members and anonymous visitors</li>
+            <li>Stitch together behavioural signals across web, app, and email to create a truly continuous member experience</li>
+            <li>Detect pre-cancellation behaviour and trigger rapid, personalised intervention before members leave</li>
+            <li>Connect claims events and life moments (new dependent, policy review) to relevant, timely outreach</li>
+            <li>Drive app adoption and reduce inbound service volume through proactive push personalisation</li>
+          </ul>
+        </div>
+        <div class="phase-products">Salesforce products: Data Cloud · MCE+ · Personalization · Service Cloud · Health Cloud</div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-card">
+        <div class="phase-header phase-h3">
+          <div class="phase-tag" style="color:#90d0fe">Phase 3</div>
+          <div class="phase-title">Maximise Value Through Intelligent Product Decisioning</div>
+        </div>
+        <div class="phase-body">
+          <p class="phase-intent"><strong>Strategic Intent:</strong> Move from campaign-driven cross-sell to always-on, intelligent offer and product recommendation — maximising revenue from HBF's existing member base.</p>
+          <p style="font-size:12px;color:#303030;line-height:1.6;margin-bottom:10px">Phase 3 is where the commercial returns compound. HBF's 220,000 single-product members represent the single largest untapped revenue opportunity in the book — and converting even a fraction of them to combined hospital and extras cover requires precision, not volume. This phase introduces the decisioning infrastructure that makes every offer feel like it was made specifically for that member, at exactly the right moment.</p>
+          <h4>Key business capabilities unlocked:</h4>
+          <ul>
+            <li>Deploy a centralised offer decisioning engine that factors in product eligibility, geography, and propensity to buy</li>
+            <li>Run Next Best Action campaigns targeting single-product members with personalised upgrade pathways</li>
+            <li>Generate life stage–driven product recommendations using claims history, household data, and ML modelling</li>
+            <li>Remove cognitive load at the point of conversion by surfacing one clear, relevant offer rather than a catalogue</li>
+          </ul>
+        </div>
+        <div class="phase-products">Salesforce products: Data Cloud · Personalization · MCE+</div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="phase-card">
+        <div class="phase-header phase-h4">
+          <div class="phase-tag" style="color:#cfe9fe">Phase 4</div>
+          <div class="phase-title">Build Loyalty That Can't Be Replicated on Price</div>
+        </div>
+        <div class="phase-body">
+          <p class="phase-intent"><strong>Strategic Intent:</strong> Transform HBF's membership from a commodity transaction into a valued, emotionally resonant relationship — making loyalty a structural advantage, not just a retention tactic.</p>
+          <p style="font-size:12px;color:#303030;line-height:1.6;margin-bottom:10px">Phase 4 completes the arc. The members HBF has acquired, engaged, and grown in value through Phases 1–3 now need a reason to stay that goes beyond price comparison. Phase 4 delivers that — through a loyalty programme that feels personal, perks that reflect individual behaviour and preferences, and recognition moments that create genuine emotional connection. These capabilities are the hardest to copy and the most durable in a commoditised market.</p>
+          <h4>Key business capabilities unlocked:</h4>
+          <ul>
+            <li>Curate member perks and offers based on individual health behaviours, usage patterns, and life stage — not generic discounts</li>
+            <li>Recognise loyalty milestones (anniversaries, tenure, health achievements) in ways that feel meaningful, not transactional</li>
+            <li>Build a loyalty programme that makes long-tenure members feel seen and valued in ways a cheaper competitor simply cannot replicate</li>
+          </ul>
+        </div>
+        <div class="phase-products">Salesforce products: Loyalty Management · Data Cloud · Personalization · MCE+</div>
+      </div>
+    </div>
+
+    <!-- How the phases connect -->
+    <div class="how-connect-box" style="margin-top:32px">
+      <h3 style="color:#fff;margin-bottom:16px;font-size:18px">How the Phases Connect</h3>
+      <p>The four phases are not independent workstreams — each one creates the conditions for the next. Phase 1 builds the data and audience infrastructure that makes Phase 2 personalisation possible. Phase 2 generates the behavioural and engagement signals that power Phase 3 decisioning. And Phase 3's commercial outcomes — more members on higher-value products — expand the base of engaged members that Phase 4 loyalty turns into advocates.</p>
+      <p>The result is a transformation that compounds in value over time: each phase delivers standalone returns, but the full strategic vision is realised only when all four work together.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 11b: PARTNER IMPLEMENTATION BRIEF
+════════════════════════════════════════════════ -->
+<section class="section" style="background:#F3F2F2">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">06b</span>
+      <h2>Getting Started — Breaking Down Phase 1</h2>
+      <span class="pipe">—</span>
+      <span class="sub">workstream scope &amp; sequencing</span>
+    </div>
+    <div class="pb-wrap">
+<div class="pb-doc-header">
+  <div class="pb-eyebrow">Confidential — For Partner Use</div>
+  <h1>HBF Platform Implementation</h1>
+  <p>Partner brief outlining workstream scope, sequencing, and delivery responsibilities. Stream 1 must be completed first. Streams 2, 3, and 4 can be mobilised in parallel once Stream 1 is live, given HBF's existing MCE environment.</p>
+</div>
+<div class="pb-legend">
+  <div class="pb-legend-item"><div class="pb-legend-swatch" style="background:#898ED1"></div>1 — Data Cloud (DC Ads)</div>
+  <div class="pb-legend-item"><div class="pb-legend-swatch" style="background:#E07D00"></div>2 — MCE+</div>
+  <div class="pb-legend-item"><div class="pb-legend-swatch" style="background:#54698D"></div>3 — Marketing Intelligence</div>
+  <div class="pb-legend-item"><div class="pb-legend-swatch" style="background:#449CD5"></div>4 — Referral Marketing</div>
+  <span class="pb-legend-note">Streams 2, 3 &amp; 4 all run in parallel from Phase 3</span>
+</div>
+<div class="pb-pill-legend">
+  <span class="pb-pill-legend-label">Key:</span>
+  <span class="pb-pill pb-pill-ootb">Out of the Box</span>
+  <span class="pb-pill pb-pill-precfg">Pre-Configured</span>
+  <span class="pb-pill pb-pill-stdconn">Standard Connector</span>
+  <span class="pb-pill pb-pill-tableau">Tableau</span>
+  <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#00626B;font-weight:700;"><span style="display:inline-block;width:24px;height:12px;background:#D4F2F4;border:1px solid #00626B;border-radius:3px;"></span>HBF Owned</span>
+</div>
+<div class="pb-gantt-card">
+  <table class="pb-gantt">
+    <thead>
+      <tr>
+        <th class="pb-col-label">Workstream</th>
+        <th>Phase 1</th><th>Phase 2</th><th>Phase 3</th><th>Phase 4</th><th>Phase 5</th><th>Phase 6</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="pb-bar-row">
+        <td class="pb-col-label pb-dc-label">1 — Data Cloud (DC Ads)</td>
+        <td><div class="pb-bar pb-dc-bar pb-cap-left"></div></td>
+        <td><div class="pb-bar pb-dc-bar pb-cap-right"></div></td>
+        <td class="pb-empty"></td><td class="pb-empty"></td><td class="pb-empty"></td><td class="pb-empty"></td>
+      </tr>
+      <tr class="pb-content-row"><td colspan="7">
+        <div class="pb-stream-block pb-dc-block">
+          <div class="pb-stream-meta">
+            <div class="pb-stream-num">Stream 01 — Foundation</div>
+            <div class="pb-stream-title">Stand Up Data Cloud</div>
+            <div class="pb-stream-dep">Sequential prerequisite. All other streams are unblocked once this is complete.</div>
+          </div>
+          <div class="pb-stream-bullets"><ul>
+            <li>Connect and map member data from Snowflake, MCE, and CRM into Data Cloud — repurpose the existing Snowflake zero-copy share already in use for Agentforce, extending data mappings for ads use cases rather than rebuilding from scratch <span class="pb-pill pb-pill-stdconn">Standard Connector</span></li>
+            <li>Connect and map website engagement data to unified member profiles <span class="pb-pill pb-pill-stdconn">Standard Connector</span></li>
+            <li>Connect, map, and ingest BigQuery data covering propensity models, app engagement, and portal engagement <span class="pb-pill pb-pill-stdconn">Standard Connector</span></li>
+            <li>Build and run identity resolution ruleset to produce a single unified member profile across all connected data sources</li>
+            <li class="pb-li-hbf">HBF will own segment creation and activation once data is mapped and profiles are live</li>
+          </ul></div>
+        </div>
+      </td></tr>
+      <tr class="pb-bar-row">
+        <td class="pb-col-label pb-mce-label">2 — MCE+ <span class="pb-parallel-tag">⟳ Parallel</span></td>
+        <td class="pb-empty"></td><td class="pb-empty"></td>
+        <td><div class="pb-bar pb-mce-bar pb-cap-left"></div></td>
+        <td><div class="pb-bar pb-mce-bar pb-cap-right"></div></td>
+        <td class="pb-empty"></td><td class="pb-empty"></td>
+      </tr>
+      <tr class="pb-content-row"><td colspan="7">
+        <div class="pb-stream-block pb-mce-block">
+          <div class="pb-stream-meta">
+            <div class="pb-stream-num">Stream 02 — Parallel from Phase 3</div>
+            <div class="pb-stream-title">Stand Up MCE+</div>
+            <div class="pb-stream-dep">HBF already have MCE in place. This stream migrates them to Marketing Cloud Advanced and connects it to Data Cloud. Runs in parallel with Streams 3 and 4.</div>
+          </div>
+          <div class="pb-stream-bullets"><ul>
+            <li>Data source connections, identity resolution, and unified profile configuration are inherited from the Data Cloud stand-up — validate alignment and extend where needed <span class="pb-pill pb-pill-precfg">Pre-Configured</span></li>
+            <li>Install Marketing Cloud Advanced marketing app and relevant data kits <span class="pb-pill pb-pill-ootb">Out of the Box</span></li>
+            <li>Create and configure the data graph to enable activation and dynamic personalisation attributes within channels</li>
+            <li>Configure and deploy the campaign creation agent <span class="pb-pill pb-pill-ootb">Out of the Box</span></li>
+            <li class="pb-li-hbf">HBF will own journey orchestration and will configure initial communication flows once the environment is live</li>
+          </ul></div>
+        </div>
+      </td></tr>
+      <tr class="pb-bar-row">
+        <td class="pb-col-label pb-mi-label">3 — Marketing Intelligence <span class="pb-parallel-tag">⟳ Parallel</span></td>
+        <td class="pb-empty"></td><td class="pb-empty"></td>
+        <td><div class="pb-bar pb-mi-bar pb-cap-left"></div></td>
+        <td><div class="pb-bar pb-mi-bar"></div></td>
+        <td><div class="pb-bar pb-mi-bar pb-cap-right"></div></td>
+        <td class="pb-empty"></td>
+      </tr>
+      <tr class="pb-content-row"><td colspan="7">
+        <div class="pb-stream-block pb-mi-block">
+          <div class="pb-stream-meta">
+            <div class="pb-stream-num">Stream 03 — Parallel from Phase 3</div>
+            <div class="pb-stream-title">Stand Up Marketing Intelligence</div>
+            <div class="pb-stream-dep">Fully independent of Streams 2 and 4. Can be mobilised immediately after Stream 1 completes.</div>
+          </div>
+          <div class="pb-stream-bullets"><ul>
+            <li>Connect paid media data sources (Meta, Google, programmatic) and owned channel data <span class="pb-pill pb-pill-stdconn">Standard Connector</span></li>
+            <li>Map ingested data to a standardised semantic data model for consistent cross-channel reporting</li>
+            <li>Configure and deploy the paid media optimisation agent for automated spend and performance recommendations</li>
+            <li class="pb-li-hbf">HBF will own and build out reporting dashboards in Tableau once the semantic data model is in place</li>
+          </ul></div>
+        </div>
+      </td></tr>
+      <tr class="pb-bar-row">
+        <td class="pb-col-label pb-ref-label">4 — Referral Marketing <span class="pb-parallel-tag">⟳ Parallel</span></td>
+        <td class="pb-empty"></td><td class="pb-empty"></td>
+        <td><div class="pb-bar pb-ref-bar pb-cap-left"></div></td>
+        <td><div class="pb-bar pb-ref-bar"></div></td>
+        <td><div class="pb-bar pb-ref-bar pb-cap-right"></div></td>
+        <td class="pb-empty"></td>
+      </tr>
+      <tr class="pb-content-row"><td colspan="7">
+        <div class="pb-stream-block pb-ref-block">
+          <div class="pb-stream-meta">
+            <div class="pb-stream-num">Stream 04 — Parallel from Phase 3</div>
+            <div class="pb-stream-title">Stand Up Referral Marketing</div>
+            <div class="pb-stream-dep">HBF's existing MCE environment means this stream does not need to wait for MCE+ to complete. Runs in parallel with Streams 2 and 3 from Phase 3.</div>
+          </div>
+          <div class="pb-stream-bullets"><ul>
+            <li>Connect referral program to Data Cloud unified profiles for member targeting and eligibility <span class="pb-pill pb-pill-precfg">Pre-Configured</span></li>
+            <li>Configure Offers Management component to define the reward and incentive catalogue available to referring members <span class="pb-pill pb-pill-ootb">Out of the Box</span></li>
+            <li>API integration with InRule — HBF's proprietary incentives and fulfilment engine — to pass referral events and receive fulfilment status back. InRule remains HBF's system of record for reward rules and fulfilment logic</li>
+            <li>Member suppression and eligibility logic via Data Cloud unified profiles <span class="pb-pill pb-pill-precfg">Pre-Configured</span></li>
+            <li>Standard referral attribution tracking <span class="pb-pill pb-pill-ootb">Out of the Box</span></li>
+            <li class="pb-li-hbf">HBF will own referral journey template creation (invitation, reminder, reward notification) — templates are available out of the box <span class="pb-pill pb-pill-ootb">Out of the Box</span></li>
+            <li>Referral reporting data to be published to HBF's existing Tableau environment via the native Salesforce–Tableau connector — no custom reporting build required <span class="pb-pill pb-pill-tableau">Tableau</span></li>
+          </ul></div>
+        </div>
+      </td></tr>
+    </tbody>
+  </table>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 12: CONNECTED VISION
+════════════════════════════════════════════════ -->
+<section class="section white">
+  <div class="wrap">
+    <div class="sec-bar">
+      <span class="num">07</span>
+      <h2>HBF Connected Vision</h2>
+      <span class="pipe">—</span>
+      <span class="sub">10 Capabilities · The Full Potential</span>
+    </div>
+    <p class="lead" style="margin-bottom:36px">When all four phases are realised, HBF operates as a single, always-on intelligence platform. Every prospect interaction, member claim, life event, and loyalty moment feeds a unified decisioning layer — making personalisation the operating default, not the exception.</p>
+
+    <div class="fbv-wrap">
+      <div class="fbv-tag">&#9670; Future Back Vision</div>
+      <div class="fbv-release">For Immediate Release</div>
+      <h3 class="fbv-headline">Inside HBF&#8217;s Transformation: Where Every Member Deserves a Different Experience</h3>
+      <hr class="fbv-rule">
+      <p class="fbv-body">Health insurance members across Australia can now experience seamless, contextual, and empowering digital journeys, ensuring they always feel seen, supported, and confident in their coverage — from their first quote to their long-term health milestones.</p>
+      <p class="fbv-body">Today, the cross-functional digital, marketing, and member connect teams at HBF announce the launch of a fully unified personalisation architecture, powered by Salesforce, designed to drive sustainable net policy growth. This transformation realises the HBF30 brand vision, fundamentally shifting the organisation from a reactive health insurer to a proactive, lifelong health partner that seamlessly adapts to the unique needs of both loyal Western Australian stayers and occasional East Coast switchers.</p>
+      <p class="fbv-body">Historically, health insurance customers have endured fragmented, vanilla experiences. Prospects frequently faced the frustration of having their quote data completely purged after thirty days, resulting in a loss of continuity and forcing the brand to bombard them with generic remarketing campaigns months later. Furthermore, existing members navigating moments of digital distress — such as visiting financial hardship pages — often went unnoticed due to siloed data across website and CRM platforms. Additionally, over two hundred thousand single-product policyholders missed out on the benefits of combined cover because they lacked tailored, contextual incentives to upgrade.</p>
+      <div class="fbv-pull">
+        <p>&#8220;Empowering every member by recognising exactly where they are in life — and tailoring every interaction to what matters to them.&#8221;</p>
+      </div>
+      <p class="fbv-body">By partnering with Salesforce to implement a centralised decisioning engine across Marketing Cloud and Salesforce CRM, HBF has elegantly solved this fragmentation. The organisation has eliminated restrictive data-purging rules and replaced legacy, disconnected incentive engines with a unified platform. First-party data from the website, app, and portal is now instantly stitched together into a comprehensive member 360 view.</p>
+      <p class="fbv-body">When a member exhibits a digital distress signal online, it automatically triggers an empathetic, proactive outbound support call from a representative. Simultaneously, the system delivers highly targeted cross-sell recommendations natively within the HBF app, seamlessly upgrading single-product members to better coverage while dynamically suppressing existing customers from redundant paid acquisition media.</p>
+      <div class="fbv-pull">
+        <p>&#8220;Our North Star has always been to serve as a true health partner for our members, and this technology ensures we can deliver on that promise at scale, driving sustainable net policy growth. We are empowering every member by recognising exactly where they are in life and tailoring every interaction to what matters to them.&#8221;</p>
+        <p class="fbv-attr">— Chief Executive Officer, HBF</p>
+      </div>
+      <div class="fbv-member-pull">
+        <p>&#8220;I used to feel like just another policy number after switching funds due to a massive rate rise. But recently, when I logged into the app, HBF recognised how my family health needs are changing — and with one click I could remind my son he now needs his own policy, with an incredible introductory rate for him and a new Fitbit for me. For the first time, it genuinely feels like my insurer is acting as my health partner.&#8221;</p>
+        <p class="fbv-attr">— Sarah, East Coast HBF Member</p>
+      </div>
+      <p class="fbv-body">Accessing this new era of empowered, personalised health cover is entirely effortless. To experience the proactive, tailored support of Australia&#8217;s premier health partner, simply visit the HBF website to generate a quote or download the official app today to see your personalised journey come to life.</p>
+      <div class="fbv-end">&#35;&#35;&#35;</div>
+    </div>
+
+    <div class="cv-grid">
+      <div class="cv-card">
+        <div class="cv-header"><div class="cv-pos">01</div><div class="cv-title">Precision Market Activation</div></div>
+        <div class="cv-body"><p>HBF reaches the right prospect in the right market — suppressing waste, targeting high-intent audiences with surgical precision across paid media</p></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-header"><div class="cv-pos">02</div><div class="cv-title">Adaptive Digital Acquisition</div></div>
+        <div class="cv-body"><p>Every unknown visitor to HBF's site experiences a tailored entry — geo-personalised, channel-aware, and optimised to convert</p></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-header"><div class="cv-pos">03</div><div class="cv-title">Intelligent Quote Conversion</div></div>
+        <div class="cv-body"><p>HBF never loses a warm prospect — quote data is retained, re-engagement is automated, and every conversion moment is captured</p></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-header"><div class="cv-pos">04</div><div class="cv-title">Frictionless Onboarding &amp; Activation</div></div>
+        <div class="cv-body"><p>New members onboard with a personalised welcome that begins deepening their relationship from day one</p></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-header" style="background:#022ac0"><div class="cv-pos">05</div><div class="cv-title">Proactive Cross-Sell &amp; Upgrade</div></div>
+        <div class="cv-body"><p>HBF unlocks value in its 220K single-product members — serving the right incentive to upgrade to combined cover at the moment they're most receptive</p></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-header" style="background:#022ac0"><div class="cv-pos">06</div><div class="cv-title">Moments-That-Matter Retention</div></div>
+        <div class="cv-body"><p>HBF intervenes before churn — identifying financial hardship, payment risk, and disengagement signals and responding with empathy and precision</p></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-header" style="background:#032d60"><div class="cv-pos">07</div><div class="cv-title">Proactive Health Partnership</div></div>
+        <div class="cv-body"><p>HBF moves beyond insurance — nudging members toward preventative health, personalised benefits utilisation, and health aspirations that deepen loyalty</p></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-header" style="background:#032d60"><div class="cv-pos">08</div><div class="cv-title">Referral &amp; Advocacy Engine</div></div>
+        <div class="cv-body"><p>HBF's most loyal members become its most powerful acquisition channel — member-get-member powered by 1PD and automated incentives</p></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-header" style="background:#032d60"><div class="cv-pos">09</div><div class="cv-title">Unified Intelligence &amp; Reporting</div></div>
+        <div class="cv-body"><p>Every channel, every campaign, every member interaction feeds a single source of commercial truth — from paid media CPA to member lifetime value</p></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-header" style="background:#066afe"><div class="cv-pos">10</div><div class="cv-title">AI-Powered Member Decisioning</div></div>
+        <div class="cv-body"><p>A single decisioning layer — fuelled by Data Cloud, Snowflake, and 1PD — orchestrates every experience HBF delivers, making personalisation the operating default, not the exception</p></div>
+      </div>
+    </div>
+
+    <!-- Closing callout -->
+    <div class="callout-strip" style="margin-top:36px">
+      <p style="font-size:16px;font-weight:700;color:#fff">"How might HBF activate their data to drive sustainable growth and become the <span style="color:#fcc003">Trusted Health Partner Interstate</span> by 2030" — <span style="font-weight:400;color:#cfe9fe">The answer lies in making every member feel seen, supported, and empowered at every moment that matters.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer>
+  <p>HBF × Salesforce Business Consulting &nbsp;·&nbsp; Member Experience Workshop · 21 May 2026 &nbsp;·&nbsp; Rachel Baldovino, Cindy Hoang, Caroline Swarbrick</p>
+</footer>
+
+</body>
+</html>
